@@ -45,7 +45,7 @@ If you would like to change any of the fields in the rubric, you'll need to edit
 - article_annotations
 - article_content
 
-Since these fields are automatically added by the app, it's confusing to a user to have them visible. See lines 549,573,597, and 621 of `index.html` for examples of this. 
+Since these fields are automatically added by the app, it's confusing to a user to have them visible. See lines `549`,`573`,`597`, and `621` of `index.html` for examples of this. 
 <br/>
 If you have any additional questions, please contact Brian Abelson:
   - brianabelson at gmail dot com
