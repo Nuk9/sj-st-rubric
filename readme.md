@@ -7,14 +7,14 @@ This is an application for aiding the process of assessing the degree to which a
 ## How it works
 Given an article URL, the application retrieves the content of the article (via the [Readability API](http://www.readability.com/developers/api)) and displays it on the page.  This text can then be highligted and assigned three different tags (these tags can be flexibly added, edited, or removed):
 
- - `Problem`:
-  * The social issue at the heart of the article. In other words, what tension prompted the article?
+* `Problem`:
+  - The social issue at the heart of the article. In other words, what tension prompted the article?
 
-- `Solution`:
-  * The attempt(s) to address the issue, whether through legislation, community organization, protest, etc.
+* `Solution`:
+  - The attempt(s) to address the issue, whether through legislation, community organization, protest, etc.
 
-- `Result`:
-  * How did the above attempt(s) to address the problem fare?  What, if any, were the outcomes.
+* `Result`:
+  - How did the above attempt(s) to address the problem fare?  What, if any, were the outcomes.
 
 <br/>
 
