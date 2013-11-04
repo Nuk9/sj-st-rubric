@@ -68,3 +68,7 @@ ul {
 .ss-form-question {
   margin-bottom: 10px;
 }
+
+.hidden-field {
+  display: none;
+}

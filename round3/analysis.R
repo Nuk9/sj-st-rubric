@@ -1,99 +1,62 @@
 setwd('~/Dropbox/code/sj-st-rubric/round3/')
-df <- read.csv('responses.csv', as.is=TRUE)
-library('rjson')
-library('plyr')
-library(doMC)
-registerDoMC(2)
-names(df) <- c(
-    "coder",
-    "v1",
-    "v2",
-    "v3",
-    "v4",
-    "v5",
-    "v6",
-    "v7",
-    "v8",
-    "v9",
-    "url",
-    "content",
-    "annotations",
-    "ts",
-    "headline",
-    "check"
-  )
+library('ggplot2')
+library('reshape2')
 
-extract_tag_info <- function(tag, text) {
-  
-  tag_text <- iconv(gsub('<br>', '', tag$text), "UTF-8")
-  text <- gsub('<br>', '', text)
-  tag_label <- tag$tag
-  tag_length <- nchar(tag_text) 
-  start_pattern <- substring(tag_text, 1, 20)
-  start <- str_locate(text, start_pattern)[1]
-  end <- start + tag_length
-  
-  return(
-    data.frame(
-      tag = tag_label,
-      length = tag_length,
-      tag_start = start,
-      tag_end = end,
-      stringsAsFactors=FALSE
-    )
-  )
+df <- read.csv('responses_with_tags.csv', as.is=TRUE)
+
+# munge
+answer_vecs <- grep('v[0-9]', names(df))
+reformat_answers <- function(v) {
+  v <- gsub('No', '0', v)
+  v <- gsub('Yes', '2', v)
+  v <- gsub('Clearly', '2', v)
+  v <- gsub('Somewhat', '1', v)
+  return(as.numeric(v))
 }
 
-
-tag_scores <- function(tags, text) {
-  json_tags = fromJSON(tags)
-  text <- iconv(gsub('<br>', '', text), "UTF-8")
-  text_length <- nchar(text)
-  
-  # generate tag_df
-  tag_df <- ldply(sample_json, extract_tag_info, text)
-   
-  solution_df = tag_df[tag_df$tag=='solution',]
-  problem_df = tag_df[tag_df$tag=='problem',]
-  response_df = tag_df[tag_df$tag=='result',]
-  
-  return(
-    data.frame(
-      per_solution = sum(solution_df$length) / text_length * 100,
-      per_problem = sum(problem_df$length) / text_length * 100,
-      per_response = sum(response_df$length) / text_length * 100,
-      first_mention = tag_df$tag[which.min(tag_df$tag_start)],
-      min_pos_solution = min(solution_df$tag_start) / text_length * 100,
-      min_pos_problem = min(problem_df$tag_start) / text_length * 100 ,
-      min_pos_response = min(response_df$tag_start) / text_length * 100,
-      avg_pos_solution = mean(solution_df$tag_start) / text_length * 100,
-      avg_pos_problem = mean(problem_df$tag_start) / text_length * 100 ,
-      avg_pos_response = mean(response_df$tag_start) / text_length * 100,
-      stringsAsFactors=FALSE
-      )
-    )
-}
-
-for (i in 1:nrow(df)) {
-  print(i)
-  text <- df[i, ]$content
-  tags <- df[i, ]$annotations
-  
-  tag_df <- tag_scores(tags, text)
-  df[i, ] <- cbind(df[i,], tag_df)
-}
-head(df)
-sample_json <- fromJSON()
-text <- df$content[1]
-sample_json[[1]]
-tag_scores(df$annotations[1], text)
-start_pattern <- substring(sample_json[[1]]$text, 1, 20)
-start_pattern
+df[,answer_vecs] <- apply(df[,answer_vecs], 2, reformat_answers)
+df$score <- rowSums(df[,answer_vecs])
 
 
+# percentage which each coder highligted text, on average
+df$highlight_per <- rowSums(df[,grep("per_", names(df))])
 
-nchar(text)
-aregexec(pattern=, text=sample_content)
-sample_content
+# percentage of article highlighted per coder
+tapply(df$highlight_per, df$coder, mean)
 
-sample_json[[1]]$text
+# top articles
+paste(df$headline[df$coder=='Keith'][1:5], df$score[df$coder=='Keith'][1:5], sep=' - ')
+paste(df$headline[df$coder=='David Bornstein'][1:5], df$score[df$coder=='David Bornstein'][1:5], sep=' - ')
+
+# scorer analysis
+ggplot(df, aes(y=headline, x=score, color=coder)) + 
+  geom_point(size=20, shape="*", position=position_jitter(height=0, width=0.75)) + 
+  labs(title="Inter-coder reliability")
+
+# solution by score by headline
+ggplot(df, aes(x=min_pos_solution, y=score, size=per_solution, color=coder)) +
+  geom_point(alpha=0.8) +
+  scale_size_continuous(range = c(3, 10)) + 
+  xlim(0, 100) + 
+  labs(title="Position of First Solution Tag vs. Score and Percentage of Solution Tags in Text") + 
+  xlab("Position of First Solution Tag") + 
+  ylab("Score")
+
+# correlation matrix of variables with score
+cor_data <- data.frame(score=df$score, df[, answer_vecs])
+melt_cor_data <- melt(cor(cor_data))
+names(melt_cor_data) <- c("Var1", "Var2", "Correlation")
+
+qplot(x=Var1, y=Var2, data=melt_cor_data, fill=Correlation, geom="tile") + 
+  labs(title="Correlation Matrix of Rubric Parameters") + 
+  xlab(' ') +
+  ylab(' ')
+
+# simple score.
+df$simple_score <- rowSums(df[, answer_vecs[c(2,5,8)]])
+k <- df[df$coder=='Keith', ]
+d <- df[df$coder=='David Bornstein', ]
+k <- k[order(k$url),]
+d <- d[order(d$url),]
+cor(k$score, d$score)
+cor(k$simple_score, d$simple_score)
