@@ -34,6 +34,12 @@
       return article_url
 
     }
+    $("#url-box").keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
     $( "#submit-url-button" ).click(function() {
         // load article, return url
         $('#document-viewer-container').css('display', 'inline-block')
