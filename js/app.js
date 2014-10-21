@@ -31,7 +31,7 @@
 
          }});
       });
-      return article_url
+      return article_url;
 
     }
     $("#url-box").keydown(function(event){
