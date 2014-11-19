@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
   <head>
@@ -10,15 +11,14 @@
     <p> Welcome to the Solutions Journalism scoring app. </p>
     <div id="submit-url">
       <strong> Please Input A URL to Analyze: </strong> <br/>
-      <form id="submit-url-form">
-        <input id="url-box" name="url" type="text" size="150"></input> <br/>
+      <form id="submit-url-form" action="submit">
+        <input id="url-box" name="url" type="text" size="150" /> <br/>
         <input id='submit-url-button' type="button" name="submit" value="Submit URL">
         <!-- <input id='finish-annotation-form' type="button" name="finish-annotation" value="Complete Annotations"> -->
       </form>
     </div>
     <div id="meta-container">
       <div id="document-viewer-container"></div>
-
 
       <!--   BEGINNING OF GOOGLE FORM -->
       <div id="form-container">
@@ -36,7 +36,7 @@
                     <label class="ss-q-item-label" for=
                            "entry_98167410">What is your name?
                       <label for= "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                                  "ss-required-asterisk">*</span></label>
+                                                                              "ss-required-asterisk">*</span></label>
                   </div>
 
                   <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -667,6 +667,8 @@
         <strong id='solution-tag'>Solution</strong> <br/>
         <input id='result-tag' type="radio" name="tag" value="result" > 
         <strong id='result-tag'>Result</strong>  <br/>
+        <input id='cancel-tag' type="radio" name="tag" value="cancel" > 
+        <strong id='cancel-tag'>Cancel</strong>  <br/>
         <input id='submit-annotation-form' type="button" name="submit-annotation" value="Annotate">
       </form>
     </span>
