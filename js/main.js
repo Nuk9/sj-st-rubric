@@ -41,9 +41,9 @@ function renderArticle(headline, content) {
 $(document).ready(function() {
 
     /* For Debug */
-    headline = "Java 8 Turotial";
-    content = "Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!"
-    renderArticle(headline, content);
+    // headline = "Java 8 Turotial";
+    // content = "Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!"
+    // renderArticle(headline, content);
     
     var hash = window.location.hash;
     cur = pages.indexOf(hash);
