@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/highlighter.js"></script>
   </head>
   
   <body>
@@ -14,7 +13,27 @@
 
     <!-- Start of intro -->
     <div id="intro" class="hidden-field page">
-      <h1> Welcome </h1>
+      <p>
+        Welcome to the solutions journalism coding tool and thanks in advance for your help with this project.
+      </p>
+      <p>
+        You should have a link to the story that you will analyze using this tool. When you enter the link in the box at the bottom of this page, the content will be displayed on the next page. After reading the story, you will assess the "solution-i-ness" of the story by answering the ten questions shown below. Then, you will use a highlighting tool to tag content related to the problem, the solution and the results, if any, described in the story. At the end of the assessment, you will have a chance to review the tagged story and your responses to the questions.
+      </p>
+      <p>
+        Here are the ten questions you will answer after reading the story.
+        <ul>
+          <li>1. Does the story explain the causes of a social problem? </li>
+          <li>2. Does the story present an associated response to that problem? </li>
+          <li>3. Does the headline/lead sound bite reflect a solutions angle? </li>
+          <li>4. Does the story get into the problem solving and how-to details of implementation? </li>
+          <li>5. Is the problem solving process central to the narrative? </li>
+          <li>6. Does the story present evidence of results linked to the response? </li>
+          <li>7. Does the story critically consider alternative explanations? </li>
+          <li>8. Does the story convey an insight or teachable lesson? </li>
+          <li>9. Does the story avoid reading like a puff piece? </li>
+          <li>10. Does the article give greater attention to the response than to a leader / innovator / do-gooder? </li>
+        </ul>
+      </p>
       <div class="prompt">
         <strong id="input-prompt"> Please Input A URL to Analyze: </strong> <br />
       </div>
@@ -41,7 +60,7 @@
     
     <!-- Start of question -->
     <div id="question" class="hidden-field page">
-      Here is question.
+      Please answer the following questions based on your reading of the story. Hit the "tell me more" button at the end of each question if you would like an explanation.
       <div class="question-box">
         <!--   BEGINNING OF GOOGLE FORM -->
         <div id="gform-container">
@@ -49,6 +68,7 @@
                 "https://docs.google.com/forms/d/13EyHZbX1Ln3M4Wqrl1dl8C8qiLt8cjL4ip00A016MI8/formResponse"
                 id="ss-form" method="post" name="ss-form" onsubmit="" target="_self">
             <div style="margin-left: 2em; padding-left: 0">
+              
               <div class="ss-form-question errorbox-good">
                 <div class="ss-item ss-item-required ss-text" dir="ltr">
                   <div class="ss-form-entry">
@@ -58,21 +78,22 @@
                     <div class="ss-q-title">
                       <label class="ss-q-item-label" for=
                              "entry_98167410">What is your name?
-                        <label for= "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                "ss-required-asterisk">*</span></label>
-                    </div>
+                        
 
+                        <label for= "itemView.getDomIdToLabel()"></label>
+
+                      </label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt1').style.display='block'" onmouseout="document.getElementById('tt1').style.display='none'" /> [Tell me more] <div id="tt1" class="toolTip"> We need the name. </div> </div>
+                    </div>
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
-                      (We need your name to track different coders'
-                      responses)
-                    </div><input class="ss-q-short" dir="auto" id=
+                    </div>
+                    <input class="ss-q-short" dir="auto" id=
                                  "entry_98167410" name="entry.98167410" required=""
                                  title="" type="text" value="">
-
                     <div class="error-message"></div>
                   </div>
                 </div>
-              </div>
+              </div> <!-- end question 1 -->
 
               <div class="ss-form-question errorbox-good">
                 <div class="ss-item ss-item-required ss-radio" dir="ltr">
@@ -83,9 +104,8 @@
                     <div class="ss-q-title">
                       <label class="ss-q-item-label" for=
                              "entry_1094508028">Does the story explain the
-                        causes of a social problem? <label for=
-                                                           "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                       "ss-required-asterisk">*</span></label>
+                        causes of a social problem? <label for="itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt2').style.display='block'" onmouseout="document.getElementById('tt2').style.display='none'" /> [Tell me more] <div id="tt2" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -129,8 +149,8 @@
                       <label class="ss-q-item-label" for=
                              "entry_678625221">Does the story present an
                         associated response to that problem? <label for=
-                                                                    "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                                "ss-required-asterisk">*</span></label>
+                                                                    "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt3').style.display='block'" onmouseout="document.getElementById('tt3').style.display='none'" /> [Tell me more] <div id="tt3" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -175,34 +195,28 @@
                       <label class="ss-q-item-label" for=
                              "entry_1192205503">Does the headline/lead sound
                         bite reflect a solutions angle? <label for=
-                                                               "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                           "ss-required-asterisk">*</span></label>
+                                                               "itemView.getDomIdToLabel()"></label> </label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt4').style.display='block'" onmouseout="document.getElementById('tt4').style.display='none'" /> [Tell me more] <div id="tt4" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_476972529_1" name="entry.476972529"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_476972529_2" name="entry.476972529"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_476972529_3" name="entry.476972529"
                                                                                                                 required="" type="radio" value="Clearly"></span>
-                          <span class=
-                                "ss-choice-label">Clearly</span></label></li>
+                          <span class=                                "ss-choice-label">Clearly</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -221,8 +235,9 @@
                              "entry_1391431169">Does the story get into the
                         problem solving and how-to details of
                         implementation? <label for=
-                                               "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                           "ss-required-asterisk">*</span></label>
+                                               "itemView.getDomIdToLabel()"></label> 
+                      </label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt5').style.display='block'" onmouseout="document.getElementById('tt5').style.display='none'" /> [Tell me more] <div id="tt5" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -230,26 +245,20 @@
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_362919179_1" name="entry.362919179"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_362919179_2" name="entry.362919179"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_362919179_3" name="entry.362919179"
                                                                                                                 required="" type="radio" value="Clearly"></span>
-                          <span class=
-                                "ss-choice-label">Clearly</span></label></li>
+                          <span class=                                "ss-choice-label">Clearly</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -267,8 +276,8 @@
                       <label class="ss-q-item-label" for=
                              "entry_1719617162">Is the problem solving process
                         central to the narrative? <label for=
-                                                         "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                     "ss-required-asterisk">*</span></label>
+                                                         "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt6').style.display='block'" onmouseout="document.getElementById('tt6').style.display='none'" /> [Tell me more] <div id="tt6" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -276,26 +285,20 @@
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_956557485_1" name="entry.956557485"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_956557485_2" name="entry.956557485"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_956557485_3" name="entry.956557485"
                                                                                                                 required="" type="radio" value="Clearly"></span>
-                          <span class=
-                                "ss-choice-label">Clearly</span></label></li>
+                          <span class=                                "ss-choice-label">Clearly</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -313,34 +316,28 @@
                       <label class="ss-q-item-label" for=
                              "entry_155473172">Does the story present evidence
                         of results linked to the response? <label for=
-                                                                  "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                              "ss-required-asterisk">*</span></label>
+                                                                  "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt7').style.display='block'" onmouseout="document.getElementById('tt7').style.display='none'" /> [Tell me more] <div id="tt7" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1030048885_1" name="entry.1030048885"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1030048885_2" name="entry.1030048885"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1030048885_3" name="entry.1030048885"
                                                                                                                 required="" type="radio" value="Clearly"></span>
-                          <span class=
-                                "ss-choice-label">Clearly</span></label></li>
+                          <span class=                                "ss-choice-label">Clearly</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -358,34 +355,28 @@
                       <label class="ss-q-item-label" for=
                              "entry_1797481326">Does the story critically
                         consider alternative explanations? <label for=
-                                                                  "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                              "ss-required-asterisk">*</span></label>
+                                                                  "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt8').style.display='block'" onmouseout="document.getElementById('tt8').style.display='none'" /> [Tell me more] <div id="tt8" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_277625720_1" name="entry.277625720"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_277625720_2" name="entry.277625720"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_277625720_3" name="entry.277625720"
                                                                                                                 required="" type="radio" value="Yes"></span>
-                          <span class=
-                                "ss-choice-label">Yes</span></label></li>
+                          <span class=                                "ss-choice-label">Yes</span></label></li>
                     </ul> 
 
                     <div class="error-message"></div>
@@ -403,8 +394,8 @@
                       <label class="ss-q-item-label" for=
                              "entry_1686874027">Does the story convey an insight
                         or teachable lesson? <label for=
-                                                    "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                "ss-required-asterisk">*</span></label>
+                                                    "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt9').style.display='block'" onmouseout="document.getElementById('tt9').style.display='none'" /> [Tell me more] <div id="tt9" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -412,26 +403,20 @@
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1875548049_1" name="entry.1875548049"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1875548049_2" name="entry.1875548049"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1875548049_3" name="entry.1875548049"
                                                                                                                 required="" type="radio" value="Clearly"></span>
-                          <span class=
-                                "ss-choice-label">Clearly</span></label></li>
+                          <span class=                                "ss-choice-label">Clearly</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -449,34 +434,27 @@
                       <label class="ss-q-item-label" for=
                              "entry_1877404981">Does the story avoid reading
                         like a puff piece? <label for=
-                                                  "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                              "ss-required-asterisk">*</span></label>
+                                                  "itemView.getDomIdToLabel()"></label> </label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt10').style.display='block'" onmouseout="document.getElementById('tt10').style.display='none'" /> [Tell me more] <div id="tt10" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_117507810_1" name="entry.117507810"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_117507810_2" name="entry.117507810"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
-                                                                                                                id="group_117507810_3" name="entry.117507810"
-                                                                                                                required="" type="radio" value="Yes"></span>
-                          <span class=
-                                "ss-choice-label">Yes</span></label></li>
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block">
+                            <input class="ss-q-radio" id="group_117507810_3" name="entry.117507810" required="" type="radio" value="Yes"></span>
+                          <span class=                                "ss-choice-label">Yes</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -495,34 +473,28 @@
                              "entry_1778185767">Does the article give greater
                         attention to the response than to a
                         leader / innovator / do-gooder? <label for=
-                                                               "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                                           "ss-required-asterisk">*</span></label>
+                                                               "itemView.getDomIdToLabel()"></label></label>
+                      <div class="questionMark" onmouseover="document.getElementById('tt11').style.display='block'" onmouseout="document.getElementById('tt11').style.display='none'" /> [Tell me more] <div id="tt11" class="toolTip"> We need the name. </div> </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
                     </div>
 
                     <ul class="ss-choices">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1540894643_1" name="entry.1540894643"
                                                                                                                 required="" type="radio" value="No"></span>
-                          <span class=
-                                "ss-choice-label">No</span></label></li>
+                          <span class=                                "ss-choice-label">No</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1540894643_2" name="entry.1540894643"
                                                                                                                 required="" type="radio" value="Somewhat"></span>
-                          <span class=
-                                "ss-choice-label">Somewhat</span></label></li>
+                          <span class=                                "ss-choice-label">Somewhat</span></label></li>
 
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
+                      <li class="ss-choice-item"><label><span class=                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-radio"
                                                                                                                 id="group_1540894643_3" name="entry.1540894643"
                                                                                                                 required="" type="radio" value="Yes"></span>
-                          <span class=
-                                "ss-choice-label">Yes</span></label></li>
+                          <span class=                                "ss-choice-label">Yes</span></label></li>
                     </ul>
 
                     <div class="error-message"></div>
@@ -530,41 +502,6 @@
                 </div>
               </div>
 
-              <div class="ss-form-question errorbox-good">
-                <div class="ss-item ss-item-required ss-checkbox" dir="ltr">
-                  <div class="ss-form-entry">
-                    <label class="ss-q-item-label" for=
-                           "entry_1933093767"></label>
-
-                    <div class="ss-q-title">
-                      <label class="ss-q-item-label" for=
-                             "entry_1933093767">Have you completed annotating
-                        the article? <label for=
-                                            "itemView.getDomIdToLabel()"></label> <span class=
-                                                                                        "ss-required-asterisk">*</span></label>
-                    </div>
-
-                    <div class="ss-q-help ss-secondary-text" dir="ltr">
-                    </div>
-
-                    <ul class="ss-choices ss-choices-required">
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-checkbox"
-                                                                                                                id="group_192446177_1" name="entry.192446177" type=
-                                                                                                                "checkbox" value="Yes"></span> <span class=
-                                                                                                                                                     "ss-choice-label">Yes</span></label></li>
-
-                      <li class="ss-choice-item"><label><span class=
-                                                              "ss-choice-item-control goog-inline-block"><input class="ss-q-checkbox"
-                                                                                                                id="group_192446177_2" name="entry.192446177" type=
-                                                                                                                "checkbox" value="No"></span> <span class=
-                                                                                                                                                    "ss-choice-label">No</span></label></li>
-                    </ul>
-
-                    <div class="error-message"></div>
-                  </div>
-                </div>
-              </div>
 
               <div class="ss-form-question errorbox-good">
                 <div class="ss-item ss-text" dir="ltr">
@@ -689,7 +626,7 @@
       <div class="prompt">
       Please highlight and tag all the text related to problem, solutions, and results, if any, in the following article. You can tag as much or as little as you think appropriate.
       </div>
-      <div class="article-box tag-box">
+      <div class="article-box tag-box" id="tagged-article">
         <div class="at-hl"> </div>
         <div class="at-ct" id="tag-content-container">  </div>
       </div>
@@ -711,9 +648,9 @@
     </div> <!-- End of container -->
     <!-- Start of highlight bar -->
     <div id="highlightbar" class="hl0" style="opacity: 1; display: none; left: 35.5px; top: 156px;">
-      <input id='problem' name="tag" type="radio" value="problem" data-color="#FEED76" /> 
+      <input id='problem' name="tag" type="radio" value="problem" data-color="#FFCC00" /> 
       <strong id='problem-tag'>Problem</strong> <br/>
-      <input id='solution' name="tag" type="radio" value="solution" data-color="#94FD88" /> 
+      <input id='solution' name="tag" type="radio" value="solution" data-color="#00FFCC" /> 
       <strong id='solution-tag'>Solution</strong> <br/>
       <input id='result' name="tag" type="radio" value="result" data-color="#D532FF" />
       <strong id='result-tag'>Result</strong>  <br/>

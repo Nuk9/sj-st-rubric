@@ -7,6 +7,7 @@ var readability_url = "https://www.readability.com/api/content/v1/parser?token=4
 var bg_color = ["#FEED76", "#94FD88", "#D532FF"];
 
 var ANNOTATION_DATA = [[],[],[]];
+var ANSWER = {};
 
 var headline;
 var title;
@@ -74,9 +75,12 @@ $(document).ready(function() {
 
     $("#goto-tagging").click(function() {
         // save doc options
-        cur = cur + 1;
-        window.location.hash = pages[cur];
-        loadState(cur);
+        var f = saveQues();
+        if(f) {
+            cur = cur + 1;
+            window.location.hash = pages[cur];
+            loadState(cur);
+        }        
     });
 
     $("#finish").click(function() {
@@ -109,9 +113,7 @@ $(document).ready(function() {
         u(tag, color);
     });
     $("#goto-review").click(function() {
-        // save tag data
         savetag();
-        // jump to next page
         cur = cur + 1;
         window.location.hash = pages[cur];
         loadState(cur);
@@ -119,10 +121,43 @@ $(document).ready(function() {
 
     /* Review page */
     $("#rv-bt").click(function() {
-        $("#rv-at").html($("#tag-content-container").html());
+        $("#rv-at").html($("#tagged-article").html());
         $("#rv-ques").html($("#gform-container").html());
+        $(".questionMark").hide();
+        // fill in the form
+        loadQuesAndSetReadOnly();
     });
 });
+
+function loadQuesAndSetReadOnly() {
+    $("#rv-ques .ss-form-question .ss-q-short").val(ANSWER["name"]);
+    $("#rv-ques .ss-form-question .ss-q-short").attr("readonly", true);
+    $("#rv-ques .ss-form-question .ss-choices input").each(function() {
+        var name = $(this).attr("name");
+        $(this).attr("disabled", "disabled");
+        if($(this).val() === ANSWER[name]) {
+            $(this).prop("checked", true);
+        }
+    });
+}
+
+function saveQues() {
+    var name = $("#entry_98167410").val();
+    ANSWER["name"] = name;
+    var finish = true;
+    $(".ss-choices").each(function() {
+        var rName = $(this).find("input").attr("name");
+        var checked = $(this).find("input[name=" + rName + "]:checked").val();
+        if(!checked) {
+            alert("You need to finish all required questions before proceed.");
+            finish = false;
+            return false;
+        } else {
+            ANSWER[rName] = checked;
+        }
+    });
+    return finish;
+}
 
 function savetag() {
     $("#tag-content-container span").each(function() {
