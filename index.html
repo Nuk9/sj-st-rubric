@@ -10,21 +10,22 @@
   </head>
   
   <body>
+    <div id="container">
 
     <!-- Start of intro -->
-    <div id="intro" class="hidden-field">
+    <div id="intro" class="hidden-field page">
       <h1> Welcome </h1>
       <div class="prompt">
         <strong id="input-prompt"> Please Input A URL to Analyze: </strong> <br />
       </div>
-      <input id="url-box" name="url" type="text" size="150"></input> <br/>
+      <input id="url-box" name="url" type="text" size="150" /> <br/>
       <div class="next-box">
         <button id="goto-article" class="next" type="button"> Start reading the story </button>
       </div>
     </div>
     
     <!-- Start of article -->
-    <div id="article" class="">
+    <div id="article" class="hidden-field page">
       <div class="prompt">
         <h1> Article </h1>
         Please read the following article <b>once</b> and hit the button when finished.
@@ -39,11 +40,11 @@
     </div>
     
     <!-- Start of question -->
-    <div id="question">
+    <div id="question" class="hidden-field page">
       Here is question.
       <div class="question-box">
         <!--   BEGINNING OF GOOGLE FORM -->
-        <div id="form-container">
+        <div id="gform-container">
           <form action=
                 "https://docs.google.com/forms/d/13EyHZbX1Ln3M4Wqrl1dl8C8qiLt8cjL4ip00A016MI8/formResponse"
                 id="ss-form" method="post" name="ss-form" onsubmit="" target="_self">
@@ -668,8 +669,7 @@
                     <tr>
                       <td class="ss-form-entry goog-inline-block" dir=
                           "ltr" id="navigation-buttons">
-                        <input id="ss-submit" name="submit" type=
-                               "submit" value="Submit">
+                        
                       </td>
                     </tr>
                   </tbody>
@@ -677,18 +677,21 @@
               </div>
             </div>
           </form>
+        </div><!--   END OF GOOGLE FORM -->
+        <div class="next-box">
+          <button id="goto-tagging" class="next" type="button"> I've answered the questions. Bring me to the tagging tool. </button>
         </div>
-        <!--   END OF GOOGLE FORM -->
       </div>
-      <div class="next-box">
-        <button id="goto-tagging" class="next" type="button"> I've answered the questions. Bring me to the tagging tool. </button>
-      </div>
-    </div>
+    </div><!--   END OF FORM Page -->
     
     <!-- Start of tag page -->
-    <div id="tagpage" class="hidden-field">
-      Here is tag page.
+    <div id="tagpage" class="hidden-field page">
+      <div class="prompt">
+      Please highlight and tag all the text related to problem, solutions, and results, if any, in the following article. You can tag as much or as little as you think appropriate.
+      </div>
       <div class="article-box tag-box">
+        <div class="at-hl"> </div>
+        <div class="at-ct" id="tag-content-container">  </div>
       </div>
       <div class="next-box">
         <button id="goto-review" class="next" type="button"> I've tagged all the components. Submit my coding. </button>
@@ -696,12 +699,28 @@
     </div>
     
     <!-- Start of review -->
-    <div id="review" class="hidden-field">
-      Here is review page.
+    <div id="review" class="hidden-field page">
+      Thank you for submitting your coding. Would you like to review it?
       <div class="next-box">
-        <button id="review" type="button"> Yes. Please. </button>
+        <button id="rv-bt" type="button"> Yes. Please. </button>
         <button id="finish" type="button">  No. Close the window. </button>
       </div>
+      <div id="rv-at"> </div>
+      <div id="rv-ques"> </div>
     </div>
+    </div> <!-- End of container -->
+    <!-- Start of highlight bar -->
+    <div id="highlightbar" class="hl0" style="opacity: 1; display: none; left: 35.5px; top: 156px;">
+      <input id='problem' name="tag" type="radio" value="problem" data-color="#FEED76" /> 
+      <strong id='problem-tag'>Problem</strong> <br/>
+      <input id='solution' name="tag" type="radio" value="solution" data-color="#94FD88" /> 
+      <strong id='solution-tag'>Solution</strong> <br/>
+      <input id='result' name="tag" type="radio" value="result" data-color="#D532FF" />
+      <strong id='result-tag'>Result</strong>  <br/>
+      <input id='remove' name="tag" type="radio" value="remove" data-color="transparent" />
+      <strong id=remove-tag'>Remove</strong>  <br/>
+      <input id='submit-annotation-form' type="button" name="submit-annotation" value="Annotate">
+    </div>
+
   </body>
 </html>

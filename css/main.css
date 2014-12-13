@@ -6,7 +6,55 @@
     padding-top: 20px;
 }
 
+.page {
+    width: 70%;
+}
+
 .article-box {
     border: 1px solid black;
     background-color: #FAEBD7;
+}
+
+#gform-container {
+    padding: 10px; 
+    width: 70%;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+#tag-content-container {
+    padding: 10px;
+}
+
+body, html {
+    height: 100%;
+    padding: 0;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+#highlightbar {
+    opacity: 0.7;
+    position: fixed;
+    width: 100px;
+    height: 107px;
+    z-index: 999;
+    padding: 3px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+#rv-at {
+    float: left;
+    width: 50%;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+#rv-ques {
+    float: right;
+    width: 50%;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
