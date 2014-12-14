@@ -41,7 +41,7 @@ body, html {
 #highlightbar {
     position: absolute;
     width: 140px;
-    height: 87px;
+    height: 110px;
     z-index: 999;
     padding: 3px;
     box-shadow: 1px 1px 5px rgba(0,0,0,1);
