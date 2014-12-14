@@ -39,7 +39,6 @@ body, html {
 }
 
 #highlightbar {
-    opacity: 0.7;
     position: fixed;
     width: 100px;
     height: 107px;
@@ -70,12 +69,28 @@ body, html {
 .toolTip {
     position:absolute;
     left:80px; /*Moves it to the right beside the question mark*/
-    top:20px;
+    top: 20px;
     display:none;
     /*Making it look pretty*/
-    width:100px;
+    width:150px;
     padding:5px;
-    border:1px solid #ffffff;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    z-index: 999;
     background-color:#eeeeee;
-    font:10px/12px Arial, Helvetica, sans-serif;
+    font:15px/19px Arial, Helvetica, sans-serif;
+}
+
+.toolTipLast {
+    position:absolute;
+    left:80px; /*Moves it to the right beside the question mark*/
+    top: -230px;
+    display:none;
+    /*Making it look pretty*/
+    width:150px;
+    padding:5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    z-index: 999;
+    background-color:#eeeeee;
+    font:15px/19px Arial, Helvetica, sans-serif;
+
 }
