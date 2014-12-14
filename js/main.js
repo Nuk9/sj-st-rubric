@@ -75,8 +75,10 @@ $(document).ready(function() {
     });
 
     $("#ques-reset").click(function() {
-        ANSWER = {};
-        loadQues();
+        if(confirm('Are you sure you want to reset your response?')) {
+            ANSWER = {};
+            loadQues();
+        }        
     });
     $("#goto-tagging").click(function() {
         // save doc options
@@ -136,17 +138,19 @@ $(document).ready(function() {
         loadState(cur);
     });
     $("#tag-reset").click(function() {
-        ANNOTATION_DATA = [[],[],[]];
-        var node = document.getElementById('tag-content-container');
-        var range = document.createRange();
-        var sel = window.getSelection();
-        range.selectNodeContents(node);
-        document.designMode = "on";
-        range && (sel.removeAllRanges(), sel.addRange(range)),
-        document.execCommand("HiliteColor", false, "transparent") ||
-            document.execCommand("BackColor", false, "transparent");
-        document.designMode = "off";
-        sel.empty();
+        if(confirm('Are you sure you want to reset your response?')) {
+            ANNOTATION_DATA = [[],[],[]];
+            var node = document.getElementById('tag-content-container');
+            var range = document.createRange();
+            var sel = window.getSelection();
+            range.selectNodeContents(node);
+            document.designMode = "on";
+            range && (sel.removeAllRanges(), sel.addRange(range)),
+            document.execCommand("HiliteColor", false, "transparent") ||
+                document.execCommand("BackColor", false, "transparent");
+            document.designMode = "off";
+            sel.empty();
+        }        
     });
 
     /* Review page */
