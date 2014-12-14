@@ -25,12 +25,14 @@ function hide(obj) {
 }
 
 function loadState(s) {
+    window.location.hash = pages[cur];
     // hide all divs
     for(var i =  0; i < pages.length; i ++) {
         hide($(pages[i]));
     }
     // show the one on state 
     show($(pages[s]));
+    scroll(0,0);
 }
 
 function renderArticle(headline, content) {
@@ -38,12 +40,16 @@ function renderArticle(headline, content) {
     $(".at-ct").empty().html(content.toString());
 }
 
-$(document).ready(function() {
+function next() {
+    cur = cur + 1;    
+    loadState(cur);    
+} 
 
-    /* For Debug */
-    // headline = "Java 8 Turotial";
-    // content = "Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!"
-    // renderArticle(headline, content);
+$(document).ready(function() {
+    // debug
+      headline = "Java 8 Turotial";
+    content = "Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!Welcome to my introduction to Java 8. This tutorial guides you step by step through all new language features. Backed by short and simple code samples you'll learn how to use default interface methods, lambda expressions, method references and repeatable annotations. At the end of the article you'll be familiar with the most recent API changes like streams, functional interfaces, map extensions and the new Date API.No walls of text - just a bunch of commented code snippets. Enjoy!"
+    renderArticle(headline, content);
     
     var hash = window.location.hash;
     cur = pages.indexOf(hash);
@@ -51,7 +57,6 @@ $(document).ready(function() {
         cur = 0;
     }
     loadState(cur);
-    window.location.hash = pages[cur];
 
     $("#goto-article").click(function() {
         var url = readability_url + $("#url-box").val();
@@ -61,25 +66,19 @@ $(document).ready(function() {
             content = content.replace(/<[^<>]+>/g, "####")
                 .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
             renderArticle(headline, content);
-            cur = cur + 1;
-            window.location.hash = pages[cur];
-            loadState(cur);
+            next();
         });
     });
 
     $("#goto-question").click(function() {
-        cur = cur + 1;
-        window.location.hash = pages[cur];
-        loadState(cur);
+        next();
     });
 
     $("#goto-tagging").click(function() {
         // save doc options
         var f = saveQues();
         if(f) {
-            cur = cur + 1;
-            window.location.hash = pages[cur];
-            loadState(cur);
+            next();
         }        
     });
 
@@ -92,6 +91,9 @@ $(document).ready(function() {
         var hash = window.location.hash;
         cur = pages.indexOf(hash);
         loadState(cur);
+        if(cur == 2) {
+            loadQues();
+        }
     }
     window.onpushstate = function(event) {
         var hash = window.location.hash;
@@ -107,10 +109,11 @@ $(document).ready(function() {
     $("#highlightbar").mousedown(function(e) {
         e.preventDefault();
     });
-    $("#submit-annotation-form").click(function() {
-        var tag = $("input[name=tag]:checked", "#highlightbar").val();
-        var color = $("input[name=tag]:checked", "#highlightbar").data("color");
+    $(".tagbut").click(function() {
+        var tag = $(this).val();
+        var color = $(this).data("color");
         u(tag, color);
+        $(this).prop("checked", false);
     });
     $("#goto-review").click(function() {
         savetag();
@@ -128,6 +131,16 @@ $(document).ready(function() {
         loadQuesAndSetReadOnly();
     });
 });
+
+function loadQues() {
+    $("#gform-container .ss-form-question .ss-q-short").val(ANSWER["name"]);
+    $("#gform-container .ss-form-question .ss-choices input").each(function() {
+        var name = $(this).attr("name");
+        if($(this).val() === ANSWER[name]) {
+            $(this).prop("checked", true);
+        }
+    });
+}
 
 function loadQuesAndSetReadOnly() {
     $("#rv-ques .ss-form-question .ss-q-short").val(ANSWER["name"]);
@@ -219,9 +232,9 @@ function g(e) {
                 var s = i.getRangeAt(0);
                 if(!s.collapsed) {
                     var l = $('#highlightbar').stop(!0, !0).fadeTo(100, 1);
-                    var n = $('#tag-content-container');
+                    var n = $('#tagged-article').offset();
                     l.css({
-                        left: e.pageX + 10,
+                        left: e.pageX + 10, 
                         top: e.pageY + 10
                     });
                 }
