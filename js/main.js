@@ -32,7 +32,7 @@ function loadState(s) {
     if(cur == 2) {
         if(cur_art_url) {
             if(cur_art_url != $("#url-box").val()) { // anlyzing a new article
-                ANSWER = [];
+                ANSWER = {};
                 ANNOTATION_DATA = [[],[],[]];
                 $("#rv-at").html("");
                 $("#rv-ques").html("");
@@ -108,10 +108,12 @@ $(document).ready(function() {
 
     $("#finish").click(function() {
         // clear data
-        ANSWER = [];
+        ANSWER = {};
         ANNOTATION_DATA = [[],[],[]];
         cur_art_url = undefined;
         $("#url-box").val("");
+        $("#rv-at").html("");
+        $("#rv-ques").html("");
         cur = 0;
         loadState(0);
     });
@@ -265,7 +267,7 @@ function saveQues() {
     var name = $("#entry_98167410").val();
     ANSWER["name"] = name;
     var finish = true;
-    $(".ss-choices").each(function() {
+    $("#gform-container .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
         var checked = $(this).find("input[name=" + rName + "]:checked").val();
         if(!checked) {
