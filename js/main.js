@@ -11,7 +11,7 @@ var bg_color = [];
 var ANNOTATION_DATA = [[],[],[]];
 var ANSWER = {};
 
-var url;
+var cur_art_url;
 var headline;
 var title;
 var names = [];
@@ -29,7 +29,18 @@ function hide(obj) {
 }
 
 function loadState(s) {
-    window.location.hash = pages[cur];
+    if(cur == 2) {
+        if(cur_art_url) {
+            if(cur_art_url != $("#url-box").val()) { // anlyzing a new article
+                ANSWER = [];
+                ANNOTATION_DATA = [[],[],[]];
+                $("#rv-at").html("");
+                $("#rv-ques").html("");
+            }
+        }
+        cur_art_url = $("#url-box").val();
+    }    
+    window.location.hash = pages[s];
     // hide all divs
     for(var i =  0; i < pages.length; i ++) {
         hide($(pages[i]));
@@ -45,7 +56,7 @@ function renderArticle(headline, content) {
 }
 
 function next() {
-    cur = cur + 1;    
+    cur = cur + 1;
     loadState(cur);    
 } 
 
@@ -66,7 +77,7 @@ $(document).ready(function() {
     loadState(cur);
 
     $("#goto-article").click(function() {
-        var url = readability_url + $("#url-box").val();
+        url = readability_url + $("#url-box").val();
         $.getJSON(url, function(json) {
             headline = json.title;
             content = json.content;
@@ -96,7 +107,13 @@ $(document).ready(function() {
     });
 
     $("#finish").click(function() {
-        history.go(-(history.length - 1));
+        // clear data
+        ANSWER = [];
+        ANNOTATION_DATA = [[],[],[]];
+        cur_art_url = undefined;
+        $("#url-box").val("");
+        cur = 0;
+        loadState(0);
     });
     
     window.onpopstate = function(event) {
@@ -111,6 +128,9 @@ $(document).ready(function() {
         var hash = window.location.hash;
         cur = pages.indexOf(hash);
         loadState(cur);
+        if(cur == 2) {
+            loadQues();
+        }
     }
 
     /* tag page */
