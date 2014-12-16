@@ -160,6 +160,8 @@ $(document).ready(function() {
     $("#goto-review").click(function() {
         savetag();
         submitCoding(function() {
+            $("#rv-at").html("");
+            $("#rv-ques").html("");
             cur = cur + 1;
             window.location.hash = pages[cur];
             loadState(cur);
