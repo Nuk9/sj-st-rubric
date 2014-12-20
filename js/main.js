@@ -1,6 +1,7 @@
 var cur = 0;
 
 var pages = ["#intro", "#article", "#question", "#tagpage", "#review"];
+var tag_l = ["problem", "solution", "result"];
 
 var readability_url = "https://www.readability.com/api/content/v1/parser?token=43e6e0e0b590f00a095a6a0e64f6c9da11783a5a&callback=?&url=";
 var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TYBU5tcQwnedyjw/formResponse";
@@ -221,7 +222,7 @@ function submitCoding(cont) {
         } else if (i == 11) { // 11: article_url
             data = data + url;
         } else if (i == 12) {  // 12: aritcle_content
-            data = data + escape(content);
+            data = data + (content);
         } else if (i == 13) { // 13: article_annotation
             data = data + JSON.stringify(ANNOTATION_DATA);
         } else if (i == 14) { // 14: article_headline
@@ -291,7 +292,7 @@ function savetag() {
             if(index <= 2 && index >= 0) {
                 ANNOTATION_DATA.push({
                     "tag": tag_l[index],
-                    "text": text
+                    "text": text.replace(/(\r\n|\n|\r)/gm,"")
                 });
             }
         }
