@@ -29,6 +29,9 @@ function hide(obj) {
 }
 
 function loadState(s) {
+    if(s == -1) {
+        s = 0;
+    }
     if(cur == 2) {
         if(cur_art_url) {
             if(cur_art_url != $("#url-box").val()) { // anlyzing a new article
@@ -39,7 +42,7 @@ function loadState(s) {
             }
         }
         cur_art_url = $("#url-box").val();
-    }    
+    }
     window.location.hash = pages[s];
     // hide all divs
     for(var i =  0; i < pages.length; i ++) {
@@ -60,6 +63,20 @@ function next() {
     loadState(cur);    
 } 
 
+function getUrlParam(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if(results == null) {
+        return "";
+    } else {
+        return results[1];
+    }
+}
+
+var referer;
+
 $(document).ready(function() {
 
     $(".ss-choices").each(function() {
@@ -68,8 +85,15 @@ $(document).ready(function() {
     $("#highlightbar input").each(function() {
         bg_color.push($(this).data("color"));
     });
-    
-    var hash = window.location.hash;
+    referer = getUrlParam("referer");
+    var hash;
+    if(referer) {
+        $("#url-box").val(referer);
+        $("#url-box").attr("disabled", "disabled");
+        hash = window.location.hash.substring(0, window.location.hash.indexOf("?"));
+    } else {
+        hash = window.location.hash;
+    }
     cur = pages.indexOf(hash);
     if(cur == -1) {
         cur = 0;
