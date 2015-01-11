@@ -50,6 +50,8 @@ body, html {
 #rv-at {
     float: left;
     width: 50%;
+    word-wrap: normal;
+    overflow-wrap: break-word;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
@@ -94,3 +96,4 @@ body, html {
     font:15px/19px Arial, Helvetica, sans-serif;
 
 }
+

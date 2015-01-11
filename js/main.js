@@ -1,6 +1,7 @@
 var cur = 0;
 
 var pages = ["#intro", "#article", "#question", "#tagpage", "#review"];
+var tag_l = ["problem", "solution", "result"];
 
 var readability_url = "https://www.readability.com/api/content/v1/parser?token=43e6e0e0b590f00a095a6a0e64f6c9da11783a5a&callback=?&url=";
 var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TYBU5tcQwnedyjw/formResponse";
@@ -8,7 +9,7 @@ var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TY
 var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
 
 var bg_color = [];
-var ANNOTATION_DATA = [[],[],[]];
+var ANNOTATION_DATA = [];
 var ANSWER = {};
 
 var cur_art_url;
@@ -36,7 +37,7 @@ function loadState(s) {
         if(cur_art_url) {
             if(cur_art_url != $("#url-box").val()) { // anlyzing a new article
                 ANSWER = {};
-                ANNOTATION_DATA = [[],[],[]];
+                ANNOTATION_DATA = [];
                 $("#rv-at").html("");
                 $("#rv-ques").html("");
             }
@@ -133,7 +134,7 @@ $(document).ready(function() {
     $("#finish").click(function() {
         // clear data
         ANSWER = {};
-        ANNOTATION_DATA = [[],[],[]];
+        ANNOTATION_DATA = [];
         cur_art_url = undefined;
         $("#url-box").val("");
         $("#rv-at").html("");
@@ -195,7 +196,7 @@ $(document).ready(function() {
     });
     $("#tag-reset").click(function() {
         if(confirm('Are you sure you want to reset your response?')) {
-            ANNOTATION_DATA = [[],[],[]];
+            ANNOTATION_DATA = [];
             var node = document.getElementById('tag-content-container');
             var range = document.createRange();
             var sel = window.getSelection();
@@ -245,7 +246,7 @@ function submitCoding(cont) {
         } else if (i == 11) { // 11: article_url
             data = data + url;
         } else if (i == 12) {  // 12: aritcle_content
-            data = data + escape(content);
+            data = data + (content);
         } else if (i == 13) { // 13: article_annotation
             data = data + JSON.stringify(ANNOTATION_DATA);
         } else if (i == 14) { // 14: article_headline
@@ -313,7 +314,10 @@ function savetag() {
             var index = bg_color.indexOf(hex);
             var text = $(this).text();
             if(index <= 2 && index >= 0) {
-                ANNOTATION_DATA[index].push(text);
+                ANNOTATION_DATA.push({
+                    "tag": tag_l[index],
+                    "text": text.replace(/(\r\n|\n|\r)/gm,"")
+                });
             }
         }
     });
