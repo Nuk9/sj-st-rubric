@@ -6,11 +6,28 @@ var tag_l = ["problem", "solution", "result"];
 var readability_url = "https://www.readability.com/api/content/v1/parser?token=43e6e0e0b590f00a095a6a0e64f6c9da11783a5a&callback=?&url=";
 var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TYBU5tcQwnedyjw/formResponse";
 // name , ques 1 ,..., ques 10, article_url, article_content, article_annotation, article_headline
-var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
+// var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
+var field_ids = ["entry.215751540", // name
+                 "entry.623526571", // q1
+                 "entry.1476092598", // q2
+                 // "entry.309895902", // q3
+                 "entry.571080810", // q4
+                 // "entry.1188901335", // q5
+                 // "entry.1897769701", // q6
+                 // "entry.404944299", // q7
+                 // "entry.1910145078", // q8
+                 "entry.926592991", // q9
+                 "entry.562869012", // q10
+                 "entry.1780171989", //url
+                 "entry.1227660023", // content
+                 "entry.528936757", // anno
+                 "entry.1002450135" //headline
+                ];
 
 var bg_color = [];
 var ANNOTATION_DATA = [];
 var ANSWER = {};
+var qnum = 5;
 
 var cur_art_url;
 var headline;
@@ -240,16 +257,16 @@ function submitCoding(cont) {
         content = content.replace(/(\r\n|\n|\r)/gm,"");
         if(i  == 0) { // 0: name
             data = data + ANSWER["name"];
-        } else if (i >= 1 && i < 11) { // 1 to 10 : questions
+        } else if (i >= 1 && i <= qnum) { // 1 to 10 : questions
             data = data + ANSWER[names[j]];
             j = j + 1;
-        } else if (i == 11) { // 11: article_url
+        } else if (i == qnum + 1) { // 11: article_url
             data = data + url;
-        } else if (i == 12) {  // 12: aritcle_content
+        } else if (i == qnum + 2) {  // 12: aritcle_content
             data = data + (content);
-        } else if (i == 13) { // 13: article_annotation
+        } else if (i == qnum + 3) { // 13: article_annotation
             data = data + JSON.stringify(ANNOTATION_DATA);
-        } else if (i == 14) { // 14: article_headline
+        } else if (i == qnum + 4) { // 14: article_headline
             data = data + headline;
         }
         if(i != field_ids.length - 1) {
