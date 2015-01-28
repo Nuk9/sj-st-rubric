@@ -251,14 +251,30 @@ $(document).ready(function() {
 
 });
 
+function escapeJSON(jsonString) {
+    return jsonString.replace(/\\n/g, "\\n")
+        .replace(/\\'/g, "\\'")
+        .replace(/\\"/g, '\\"')
+        .replace(/\\&/g, "\\&")
+        .replace(/\\r/g, "\\r")
+        .replace(/\\t/g, "\\t")
+        .replace(/\\b/g, "\\b")
+        .replace(/\\f/g, "\\f")
+        .replace(/“/g, "\\“")
+        .replace(/”/g, "\\”")
+        .replace(/’/g, "\\’")
+    ;
+}
+
 function submitCoding(cont) {
     var data = "";
     var j = 0;
     var url = $("#url-box").val();
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
-        content = content.replace(/<[^<>]+>/g, "####")
-            .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
+        content = $(".at-ct").html();
+        // content = content.replace(/<[^<>]+>/g, "####")
+        //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
         content = content.replace(/(\r\n|\n|\r)/gm,"");
         if(i  == 0) { // 0: name
             data = data + ANSWER["name"];
@@ -268,11 +284,11 @@ function submitCoding(cont) {
         } else if (i == qnum + 1) { // 11: article_url
             data = data + url;
         } else if (i == qnum + 2) {  // 12: aritcle_content
-            data = data + (escape(content));
+            data = data + (encodeURIComponent(content));
         } else if (i == qnum + 3) { // 13: article_annotation
-            data = data + escape(JSON.stringify(ANNOTATION_DATA));
+            data = data + encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
         } else if (i == qnum + 4) { // 14: article_headline
-            data = data + escape("\"" + headline + "\"");
+            data = data + encodeURIComponent("\"" + escapeJSON(headline) + "\"");
         }
         if(i != field_ids.length - 1) {
             data = data + "&"
@@ -338,7 +354,7 @@ function savetag() {
             if(index <= 2 && index >= 0) {
                 ANNOTATION_DATA.push({
                     "tag": tag_l[index],
-                    "text": text.replace(/(\r\n|\n|\r)/gm,"")
+                    "text": escapeJSON(text.replace(/(\r\n|\n|\r)/gm,""))
                 });
             }
         }
