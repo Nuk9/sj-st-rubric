@@ -7,15 +7,16 @@ var readability_url = "https://www.readability.com/api/content/v1/parser?token=4
 var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TYBU5tcQwnedyjw/formResponse";
 // name , ques 1 ,..., ques 10, article_url, article_content, article_annotation, article_headline
 // var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
+var qnum = 10;
 var field_ids = ["entry.215751540", // name
                  "entry.623526571", // q1
                  "entry.1476092598", // q2
-                 // "entry.309895902", // q3
+                 "entry.309895902", // q3
                  "entry.571080810", // q4
-                 // "entry.1188901335", // q5
-                 // "entry.1897769701", // q6
-                 // "entry.404944299", // q7
-                 // "entry.1910145078", // q8
+                 "entry.1188901335", // q5
+                 "entry.1897769701", // q6
+                 "entry.404944299", // q7
+                 "entry.1910145078", // q8
                  "entry.926592991", // q9
                  "entry.562869012", // q10
                  "entry.1780171989", //url
@@ -27,7 +28,6 @@ var field_ids = ["entry.215751540", // name
 var bg_color = [];
 var ANNOTATION_DATA = [];
 var ANSWER = {};
-var qnum = 5;
 
 var cur_art_url;
 var headline;
@@ -273,8 +273,6 @@ function submitCoding(cont) {
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
         content = $(".at-ct").html();
-        // content = content.replace(/<[^<>]+>/g, "####")
-        //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
         content = content.replace(/(\r\n|\n|\r)/gm,"");
         if(i  == 0) { // 0: name
             data = data + ANSWER["name"];
