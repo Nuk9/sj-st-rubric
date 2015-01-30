@@ -272,7 +272,7 @@ function submitCoding(cont) {
     var url = $("#url-box").val();
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
-        content = $(".at-ct").html();
+        content = $(".at-ct").text();
         // content = content.replace(/<[^<>]+>/g, "####")
         //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
         content = content.replace(/(\r\n|\n|\r)/gm,"");
