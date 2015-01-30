@@ -207,6 +207,7 @@ $(document).ready(function() {
         }
     });
     $("#goto-review").click(function() {
+        $(this).attr("disabled","true");
         savetag();
         submitCoding(function() {
             $("#rv-at").html("");

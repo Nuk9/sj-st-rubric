@@ -207,6 +207,7 @@ $(document).ready(function() {
         }
     });
     $("#goto-review").click(function() {
+        $(this).attr('disabled', true);
         savetag();
         submitCoding(function() {
             $("#rv-at").html("");
@@ -214,6 +215,7 @@ $(document).ready(function() {
             cur = cur + 1;
             window.location.hash = pages[cur];
             loadState(cur);
+            $("#goto-review").attr('disabled', false);
         });        
     });
     $("#tag-reset").click(function() {
