@@ -146,6 +146,7 @@ $(document).ready(function() {
         }        
     });
     $("#goto-tagging").click(function() {
+        $("#goto-review").attr("disabled", false);
         // save doc options
         var f = saveQues();
         if(f) {
@@ -157,6 +158,7 @@ $(document).ready(function() {
         // clear data
         ANSWER = {};
         ANNOTATION_DATA = [];
+        $("#goto-review").attr("disabled", false);
         cur_art_url = undefined;
         $("#url-box").val("");
         $("#rv-at").html("");
@@ -207,7 +209,7 @@ $(document).ready(function() {
         }
     });
     $("#goto-review").click(function() {
-        $(this).attr("disabled","true");
+        $(this).attr("disabled","disabled");
         savetag();
         submitCoding(function() {
             $("#rv-at").html("");
