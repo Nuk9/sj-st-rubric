@@ -37,6 +37,7 @@ var news_links = ["http://www.seattletimes.com/education-lab/care-about-possible
 var bg_color = [];
 var ANNOTATION_DATA = [];
 var ANSWER = {};
+var USER = {};
 var qnum = 5;
 
 var cur_art_url;
@@ -65,8 +66,6 @@ function loadState(s) {
             if(cur_art_url != $("#url-box").val()) { // anlyzing a new article
                 ANSWER = {};
                 ANNOTATION_DATA = [];
-                $("#rv-at").html("");
-                $("#rv-ques").html("");
             }
         }
         cur_art_url = $("#url-box").val();
@@ -159,27 +158,12 @@ $(document).ready(function() {
         }        
     });
     $("#goto-tagging").click(function() {
-        $("#goto-review").attr("disabled", false);
-        // save doc options
         var f = saveQues();
         if(f) {
             next();
         }        
     });
 
-    $("#finish").click(function() {
-        // clear data
-        ANSWER = {};
-        ANNOTATION_DATA = [];
-        $("#goto-review").attr("disabled", false);
-        cur_art_url = undefined;
-        $("#url-box").val("");
-        $("#rv-at").html("");
-        $("#rv-ques").html("");
-        cur = 0;
-        loadState(0);
-    });
-    
     window.onpopstate = function(event) {
         var hash = window.location.hash;
         cur = pages.indexOf(hash);
@@ -222,15 +206,10 @@ $(document).ready(function() {
         }
     });
     $("#goto-review").click(function() {
-        $(this).attr("disabled","disabled");
         savetag();
-        submitCoding(function() {
-            $("#rv-at").html("");
-            $("#rv-ques").html("");
-            cur = cur + 1;
-            window.location.hash = pages[cur];
-            loadState(cur);
-        });        
+        cur = cur + 1;
+        window.location.hash = pages[cur];
+        loadState(cur);
     });
     $("#tag-reset").click(function() {
         if(confirm('Are you sure you want to reset your response?')) {
@@ -258,11 +237,24 @@ $(document).ready(function() {
 
     /* Review page */
     $("#rv-bt").click(function() {
-        $("#rv-at").html($("#tagged-article").html());
-        $("#rv-ques").html($("#gform-container").html());
-        $(".questionMark").hide();
-        // fill in the form
-        loadQuesAndSetReadOnly();
+        saveUser();
+        $(this).attr("disabled","disabled");
+        submitCoding(function() {
+            alert("Success! You can close the window now.");
+        });
+    });
+    $("#finish").click(function() {
+        saveUser();
+        $(this).attr("disabled","disabled");
+        submitCoding(function() {
+            ANSWER = {};
+            ANNOTATION_DATA = [];
+            $("#finish").attr("disabled", false);
+            var index = Math.floor(Math.random() * 10);
+            $('#url-box').val(news_links[index]);
+            cur = 0;
+            loadState(0);    
+        });
     });
 
 });
@@ -290,7 +282,7 @@ function submitCoding(cont) {
     cc = encodeURIComponent(cc);
     var ad = encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
     var hl = encodeURIComponent(escapeJSON(headline));
-    var j = 2;
+    var j = 0;
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
         if (i == field_ids.length - 4) { // 11: article_url
@@ -302,7 +294,7 @@ function submitCoding(cont) {
         } else if (i == field_ids.length - 1) { // 14: article_headline
             data = data + hl;
         } else if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) {
-            data = data + ANSWER[field_ids[i]];
+            data = data + USER[field_ids[i]];
         } else {
             data = data + ANSWER[names[j]];
             j = j + 1;
@@ -320,19 +312,6 @@ function submitCoding(cont) {
 }
 
 function loadQues() {
-    $("#rv-ques .ss-form-question .ss-q-short").each(
-        function() {
-            var name = $(this).attr("name");
-            if(name == "entry.98167410") {
-                $(this).val(ANSWER[name]);
-            } else if (name == "entry.2135852305") {
-                $(this).val(ANSWER[name]);
-            } else if (name == "entry_1739474268_other_option_response") {
-                $(this).val(ANSWER[name]);
-            }
-        }
-    );
-    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").val(ANSWER["entry.1739474268.other_option_response"]);
     $("#gform-container .ss-form-question .ss-choices input").each(function() {
         var name = $(this).attr("name");
         if($(this).val() === ANSWER[name]) {
@@ -343,35 +322,7 @@ function loadQues() {
     });
 }
 
-function loadQuesAndSetReadOnly() {
-    $("#rv-ques .ss-form-question .ss-q-short").each(
-        function() {
-            $(this).attr("readonly", true);
-            var name = $(this).attr("name");
-            if(name == "entry.98167410") {
-                $(this).val(ANSWER["entry.66704122"]);
-            } else if (name == "entry.2135852305") {
-                $(this).val(ANSWER[name]);
-            }
-        }
-    );
-    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").attr("readonly", true);
-    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").val(ANSWER["entry.1739474268.other_option_response"]);
-    $("#rv-ques .ss-form-question .ss-choices input").each(function() {
-        var name = $(this).attr("name");
-        $(this).attr("disabled", "disabled");
-        if($(this).val() === ANSWER[name]) {
-            $(this).prop("checked", true);
-        }
-    });
-}
-
 function saveQues() {
-    var name = $("#entry_98167410").val();
-    ANSWER["entry.66704122"] = name;
-    var email = $("#entry_2135852305").val();
-    ANSWER["entry.2135852305"] = email;
-    var other_val = $("#entry_1739474268_other_option_response").val();    
     var finish = true;
     $("#gform-container .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
@@ -382,13 +333,44 @@ function saveQues() {
             return false;
         } else {
             ANSWER[rName] = checked;
-            if(rName === "entry.1739474268" && checked === "__other_option__") {
-                ANSWER["entry.1739474268"] = "__other_option__";
-                ANSWER["entry.1739474268.other_option_response"] = other_val;
-            }
         }
     });
     return finish;
+}
+
+function loadUser() {
+    $("#entry_98167410").val(USER["entry.66704122"]);
+    $("#entry_2135852305").val(USER["entry.2135852305"]);
+    $("#entry_1739474268_other_option_response").val(USER["entry.1739474268.other_option_response"]);
+    $("#user-info .ss-choices").each(function() {
+        var rName = $(this).find("input").attr("name");
+        if(rName.val() == USER[name]) {
+            $(this).prop("checked", true);
+        } else {
+            $(this).prop("checked", false);
+        }
+    });
+}
+
+function saveUser() {
+    var name = $("#entry_98167410").val();
+    USER["entry.66704122"] = name;
+    var email = $("#entry_2135852305").val();
+    USER["entry.2135852305"] = email;
+    var other_val = $("#entry_1739474268_other_option_response").val();    
+    $("#user-info .ss-choices").each(function() {
+        var rName = $(this).find("input").attr("name");
+        var checked = $(this).find("input[name=" + rName + "]:checked").val();
+        if(!checked) {
+            // alert("You need to finish all required questions before proceed.");
+        } else {
+            USER[rName] = checked;
+            if(rName === "entry.1739474268" && checked === "__other_option__") {
+                USER["entry.1739474268"] = "__other_option__";
+                USER["entry.1739474268.other_option_response"] = other_val;
+            }
+        }
+    });
 }
 
 function savetag() {
