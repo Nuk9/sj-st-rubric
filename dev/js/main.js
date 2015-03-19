@@ -239,6 +239,7 @@ $(document).ready(function() {
     $("#rv-bt").click(function() {
         saveUser();
         $(this).attr("disabled","disabled");
+        $("#finish").attr("disabled", "disabled");
         submitCoding(function() {
             alert("Success! You can close the window now.");
         });
