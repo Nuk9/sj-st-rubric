@@ -23,6 +23,17 @@ var field_ids = ["entry.66704122", // name
                  "entry.1494902380" //headline
                 ];
 
+var news_links = ["http://www.seattletimes.com/education-lab/care-about-possible-change-in-seattle-school-start-times-sign-up-to-lead-neighborhood-discussion/",
+"http://www.seattletimes.com/seattle-news/crime/garfield-high-school-locked-down-during-search-for-armed-man/",
+"http://www.seattletimes.com/education-lab/black-students-do-better-in-washington-but-still-trail-whites-by-a-growing-margin/",
+"http://www.seattletimes.com/seattle-news/hard-work-not-fads-revives-rainier-beach-high/",
+"http://www.seattletimes.com/seattle-news/seattle-university-files-appeal-to-stop-union-vote-count/",
+"http://www.seattletimes.com/nation-world/penn-state-frat-suspended-over-facebook-page-with-nude-pics/",
+"http://www.seattletimes.com/education-lab/your-college-is-not-your-destiny/",
+"http://www.seattletimes.com/seattle-news/crime/seattle-drive-by-shooting-victim-dreamed-of-success-friends-say/",
+"http://www.seattletimes.com/education-lab/top-finalists-in-kent-schools-chief-search-announced/",
+"http://www.seattletimes.com/education-lab/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/"];
+
 var bg_color = [];
 var ANNOTATION_DATA = [];
 var ANSWER = {};
@@ -95,6 +106,9 @@ function getUrlParam(name) {
 var referer;
 
 $(document).ready(function() {
+    var index = Math.floor(Math.random() * 10);
+    $('#url-box').val(news_links[index]);
+    $('#url-box').attr("readonly", true);
     $("#url-box").keydown(function(event){
         if(event.keyCode == 13) {
             event.preventDefault();
