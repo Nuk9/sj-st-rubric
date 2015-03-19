@@ -85,7 +85,7 @@ body, html {
 .toolTipLast {
     position:absolute;
     left:80px; /*Moves it to the right beside the question mark*/
-    top: -230px;
+    top: -170px;
     display:none;
     /*Making it look pretty*/
     width:150px;
@@ -94,6 +94,5 @@ body, html {
     z-index: 999;
     background-color:#eeeeee;
     font:15px/19px Arial, Helvetica, sans-serif;
-
 }
 

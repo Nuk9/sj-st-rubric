@@ -4,24 +4,23 @@ var pages = ["#intro", "#article", "#question", "#tagpage", "#review"];
 var tag_l = ["problem", "solution", "result"];
 
 var readability_url = "https://www.readability.com/api/content/v1/parser?token=43e6e0e0b590f00a095a6a0e64f6c9da11783a5a&callback=?&url=";
-var gform_url = "https://docs.google.com/forms/d/12NtdP2XHZMxH9PR_vfdYs5c7Pa17TYBU5tcQwnedyjw/formResponse";
+var gform_url = "https://docs.google.com/forms/d/1A5M4T8TGWyfUPsdrcRjvVYbAJLhPA-VR-02830EqLE0/formResponse";
 // name , ques 1 ,..., ques 10, article_url, article_content, article_annotation, article_headline
 // var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
-var field_ids = ["entry.215751540", // name
-                 "entry.623526571", // q1
-                 "entry.1476092598", // q2
-                 // "entry.309895902", // q3
-                 "entry.571080810", // q4
-                 // "entry.1188901335", // q5
-                 // "entry.1897769701", // q6
-                 // "entry.404944299", // q7
-                 // "entry.1910145078", // q8
-                 "entry.926592991", // q9
-                 "entry.562869012", // q10
-                 "entry.1780171989", //url
-                 "entry.1227660023", // content
-                 "entry.528936757", // anno
-                 "entry.1002450135" //headline
+var field_ids = ["entry.66704122", // name
+                 "entry.2135852305", // email
+                 "entry.1739474268", // status // j start
+                 "entry.1739474268.other_option_response", // status other option
+                 "entry.1398427809", // interest
+                 "entry.1918432746", // q1
+                 "entry.477095358", // q2
+                 "entry.1554396570", // q3
+                 "entry.1631672294", // q4
+                 "entry.1970954995", // q5
+                 "entry.354358979", //url
+                 "entry.775723807", // content
+                 "entry.903406015", // anno
+                 "entry.1494902380" //headline
                 ];
 
 var bg_color = [];
@@ -271,27 +270,28 @@ function escapeJSON(jsonString) {
 
 function submitCoding(cont) {
     var data = "";
-    var j = 0;
-    var url = $("#url-box").val();
+    var url = encodeURIComponent($("#url-box").val());
+    var cc = $(".at-ct").text();
+    cc = cc.replace(/(\r\n|\n|\r)/gm,"");
+    cc = encodeURIComponent(cc);
+    var ad = encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
+    var hl = encodeURIComponent(escapeJSON(headline));
+    var j = 2;
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
-        content = $(".at-ct").text();
-        // content = content.replace(/<[^<>]+>/g, "####")
-        //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
-        content = content.replace(/(\r\n|\n|\r)/gm,"");
-        if(i  == 0) { // 0: name
-            data = data + ANSWER["name"];
-        } else if (i >= 1 && i <= qnum) { // 1 to 10 : questions
+        if (i == field_ids.length - 4) { // 11: article_url
+            data = data + url;
+        } else if (i == field_ids.length - 3) {  // 12: aritcle_content
+            data = data + cc;
+        } else if (i == field_ids.length - 2) { // 13: article_annotation
+            data = data + ad;
+        } else if (i == field_ids.length - 1) { // 14: article_headline
+            data = data + hl;
+        } else if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) {
+            data = data + ANSWER[field_ids[i]];
+        } else {
             data = data + ANSWER[names[j]];
             j = j + 1;
-        } else if (i == qnum + 1) { // 11: article_url
-            data = data + url;
-        } else if (i == qnum + 2) {  // 12: aritcle_content
-            data = data + (encodeURIComponent(content));
-        } else if (i == qnum + 3) { // 13: article_annotation
-            data = data + encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
-        } else if (i == qnum + 4) { // 14: article_headline
-            data = data + encodeURIComponent(escapeJSON(headline));
         }
         if(i != field_ids.length - 1) {
             data = data + "&"
@@ -306,7 +306,19 @@ function submitCoding(cont) {
 }
 
 function loadQues() {
-    $("#gform-container .ss-form-question .ss-q-short").val(ANSWER["name"]);
+    $("#rv-ques .ss-form-question .ss-q-short").each(
+        function() {
+            var name = $(this).attr("name");
+            if(name == "entry.98167410") {
+                $(this).val(ANSWER[name]);
+            } else if (name == "entry.2135852305") {
+                $(this).val(ANSWER[name]);
+            } else if (name == "entry_1739474268_other_option_response") {
+                $(this).val(ANSWER[name]);
+            }
+        }
+    );
+    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").val(ANSWER["entry.1739474268.other_option_response"]);
     $("#gform-container .ss-form-question .ss-choices input").each(function() {
         var name = $(this).attr("name");
         if($(this).val() === ANSWER[name]) {
@@ -318,8 +330,19 @@ function loadQues() {
 }
 
 function loadQuesAndSetReadOnly() {
-    $("#rv-ques .ss-form-question .ss-q-short").val(ANSWER["name"]);
-    $("#rv-ques .ss-form-question .ss-q-short").attr("readonly", true);
+    $("#rv-ques .ss-form-question .ss-q-short").each(
+        function() {
+            $(this).attr("readonly", true);
+            var name = $(this).attr("name");
+            if(name == "entry.98167410") {
+                $(this).val(ANSWER["entry.66704122"]);
+            } else if (name == "entry.2135852305") {
+                $(this).val(ANSWER[name]);
+            }
+        }
+    );
+    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").attr("readonly", true);
+    $("#rv-ques .ss-form-question .ss-choices .ss-q-other").val(ANSWER["entry.1739474268.other_option_response"]);
     $("#rv-ques .ss-form-question .ss-choices input").each(function() {
         var name = $(this).attr("name");
         $(this).attr("disabled", "disabled");
@@ -331,7 +354,10 @@ function loadQuesAndSetReadOnly() {
 
 function saveQues() {
     var name = $("#entry_98167410").val();
-    ANSWER["name"] = name;
+    ANSWER["entry.66704122"] = name;
+    var email = $("#entry_2135852305").val();
+    ANSWER["entry.2135852305"] = email;
+    var other_val = $("#entry_1739474268_other_option_response").val();    
     var finish = true;
     $("#gform-container .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
@@ -342,6 +368,10 @@ function saveQues() {
             return false;
         } else {
             ANSWER[rName] = checked;
+            if(rName === "entry.1739474268" && checked === "__other_option__") {
+                ANSWER["entry.1739474268"] = "__other_option__";
+                ANSWER["entry.1739474268.other_option_response"] = other_val;
+            }
         }
     });
     return finish;
