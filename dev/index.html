@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </head>
   
   <body>
@@ -18,12 +19,7 @@
         <a href="/"></a>
       </div>
       <p>
-        Welcome to the solutions journalism coding tool and thanks in advance for your help with this project.
-      </p>
-      <p>
-        Dear NAME TK:
-        
-        Thank you for your continuing interest in The Seattle Times’ “Education Lab” project. Since you have indicated interest in providing us with feedback, we’d like to invite you now to participate in a brief exercise that will help us better understand the impact that Education Lab is having with readers. This exercise should take about 15 minutes to complete. Participants who complete the rating by DATE TK will be entered in a drawing, to be held DATE TK, to win an Apple iPad.
+        Thank you for you continued support of the Seattle Times Education Lab. Your input is valuable to us and will be used to provide stronger, more relevant coverage of education and other issues. We’d like to invite you now to participate in a brief exercise that will help us better understand the impact that Education Lab is having with readers. This exercise should take about 15 minutes to complete. Participants who complete the rating by DATE TK will be entered in a drawing, to be held DATE TK, to win an Apple iPad.
         
         “Education Lab” is a Seattle Times initiative to tell stories about public education issues in Washington state. We’d like to better understand how these stories are serving the community.
         
@@ -59,7 +55,7 @@
     <!-- Start of question -->
     
     <div id="question" class="hidden-field page">
-      Please answer the following questions based on your reading of the story. Hit the "tell me more" button at the end of each question if you would like an explanation.
+      Please answer the following questions based on your reading of the story. Click on the “Tell Me More” button at the end of each question for an explanation.
       <div class="question-box">
         <!--   BEGINNING OF GOOGLE FORM -->
         <div id="gform-container">
@@ -78,9 +74,10 @@
                            "entry_1094508028"></label>
 
                     <div class="ss-q-title">
+                      <span class="ss-missing-item"> * </span>
                       <label class="ss-q-item-label" for=
                              "entry_1094508028">Does the story explain the causes of a problem? <label for="itemView.getDomIdToLabel()"></label></label>
-                      <div class="questionMark" onmouseover="document.getElementById('tt2').style.display='block'" onmouseout="document.getElementById('tt2').style.display='none'" /> [Tell me more] <div id="tt2" class="toolTip"> Do you understand clearly from this story what the problem is, and what is causing that problem? </div> </div>
+                      <div class="questionMark button-style" myname="tmm1"/> Tell me more </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -121,12 +118,11 @@
                            "entry_678625221"></label>
 
                     <div class="ss-q-title">
+                      <span class="ss-missing-item"> * </span>
                       <label class="ss-q-item-label" for="entry_678625221">Does the story present an associated solution to that problem?
                         <label for= "itemView.getDomIdToLabel()"></label>
                       </label>
-                      <div class="questionMark" onmouseover="document.getElementById('tt3').style.display='block'" onmouseout="document.getElementById('tt3').style.display='none'" /> [Tell me more] <div id="tt3" class="toolTip">
-                        In addition to the problem, does the story clearly describe a solution to that problem?
-                    </div> </div>
+                      <div class="questionMark button-style" myname="tmm2"> Tell me more </div> 
                     </div>
 
                     <ul class="ss-choices">
@@ -161,10 +157,11 @@
                            "entry_1391431169"></label>
 
                     <div class="ss-q-title">
+                      <span class="ss-missing-item"> * </span>
                       <label class="ss-q-item-label" for=
                              "entry_1391431169">Does the story address the problem solving and how-to details of implementation? <label for="itemView.getDomIdToLabel()"></label> 
                       </label>
-                      <div class="questionMark" onmouseover="document.getElementById('tt5').style.display='block'" onmouseout="document.getElementById('tt5').style.display='none'" /> [Tell me more] <div id="tt5" class="toolTip"> If the story describes a solution, is that description more than superficial? Does it explain clearly how the solution actually works? </div> </div>
+                      <div class="questionMark button-style" myname="tmm3"> Tell me more </div>
                     </div>
 
                     <ul class="ss-choices">
@@ -196,10 +193,11 @@
                            "entry_1877404981"></label>
 
                     <div class="ss-q-title">
+                      <span class="ss-missing-item"> * </span>
                       <label class="ss-q-item-label" for=
                              "entry_1877404981">Does the story present results, or indications of progress, linked to the solution? <label for=
                                                   "itemView.getDomIdToLabel()"></label> </label>
-                      <div class="questionMark" onmouseover="document.getElementById('tt10').style.display='block'" onmouseout="document.getElementById('tt10').style.display='none'" /> [Tell me more] <div id="tt10" class="toolTipLast"> If the story describes a solution, is there solid data or other evidence to show that the solution does (or doesn’t) work? If there’s no solid data, does the story describe first-hand observation or early anecdotal results? </div> </div>
+                      <div class="questionMark button-style" myname="tmm4"> Tell me more </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -233,10 +231,11 @@
                            "entry_1778185767"></label>
 
                     <div class="ss-q-title">
+                      <span class="ss-missing-item"> * </span>
                       <label class="ss-q-item-label" for=
                              "entry_1778185767">Does the story convey an insight or teachable lesson?<label for=
                                                                "itemView.getDomIdToLabel()"></label></label>
-                      <div class="questionMark" onmouseover="document.getElementById('tt11').style.display='block'" onmouseout="document.getElementById('tt11').style.display='none'" /> [Tell me more] <div id="tt11" class="toolTipLast"> Does the story connect the problem and/or solution to a bigger insight about how the world works and, perhaps, how it could be made to work better? </div> </div>
+                      <div class="questionMark button-style" myname="tmm5"> Tell me more </div>
                     </div>
 
                     <div class="ss-q-help ss-secondary-text" dir="ltr">
@@ -376,6 +375,10 @@
               </div>
             </div>
           </form>
+          <div id="hintblock" class="toolTip">
+            <div id="hintcontent"></div>
+            <div id="hintclose">Close</div>
+          </div>
         </div><!--   END OF GOOGLE FORM -->
         <div class="next-box">
           <button id="goto-tagging" class="next" type="button"> I've answered the questions. Bring me to the tagging tool. </button>
@@ -395,7 +398,7 @@
         <div class="at-ct" id="tag-content-container">  </div>
       </div>
       <div class="next-box">
-        <button id="goto-review" class="next" type="button"> I've tagged all the components. Submit my coding. </button>
+        <button id="goto-review" class="next" type="button"> I'm done. </button>
         <button id="tag-reset" class="reset" type="button"> Reset </button>
       </div>
     </div>
@@ -403,7 +406,7 @@
     <!-- Start of review -->
     <div id="review" class="hidden-field page">
     <p>
-      Thank you for submitting your response. If you provided an e-mail address we will enter you in the drawing, which will be held [DATE TBD].
+      Thank you for participating. If you provide your name and email address, we will enter you in the iPad drawing held on [DATE TBD].  Your name and email address will only be used for the purposes of communicating with you regarding the Seattle Times and the iPad drawing.  Your email address will not be used for other purposes or provided to any other entity for the purpose of solicitation.”
       </p>
       <div id="user-info">
         <div class="ss-form-question errorbox-good"><!-- Start question 1: name -->
@@ -501,8 +504,8 @@
               </div></div></div><!-- end question 4 -->
       </div>
       <div class="next-box">
-        <button id="rv-bt" type="button"> Submit your coding. </button>
-        <button id="finish" type="button">  Submit the coding and analyze another article. </button>
+        <button id="rv-bt" type="button"> Submit my responses and exit. </button>
+        <button id="finish" type="button">  Submit my responses and analyze another article </button>
       </div>
 
       

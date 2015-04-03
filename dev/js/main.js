@@ -33,6 +33,7 @@ var news_links = ["http://www.seattletimes.com/education-lab/care-about-possible
 "http://www.seattletimes.com/seattle-news/crime/seattle-drive-by-shooting-victim-dreamed-of-success-friends-say/",
 "http://www.seattletimes.com/education-lab/top-finalists-in-kent-schools-chief-search-announced/",
 "http://www.seattletimes.com/education-lab/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/"];
+var news_bool = [];
 
 var bg_color = [];
 var ANNOTATION_DATA = [];
@@ -103,9 +104,16 @@ function getUrlParam(name) {
 }
 
 var referer;
+var current_index;
 
 $(document).ready(function() {
-    var index = Math.floor(Math.random() * 10);
+    var index = Math.floor(Math.random((new Date()).getTime()) * 10);
+    current_index = index;
+    if(news_bool.length == 0) {
+        for(var i = 0; i < news_links.length; i ++) {
+            news_bool.push(false);
+        }    
+    }
     $('#url-box').val(news_links[index]);
     $('#url-box').attr("readonly", true);
     $("#url-box").keydown(function(event){
@@ -145,6 +153,30 @@ $(document).ready(function() {
             renderArticle(headline, content);
             next();
         });
+    });
+
+    $(".questionMark").click(function() {
+        var name = $(this).attr("myname");
+        var hint = "";
+        if(name == "tmm1") {
+            hint = "Do you understand clearly from this story what the problem is, and what is causing that problem?";
+        } else if(name == "tmm2") {
+            hint = "In addition to the problem, does the story clearly describe a solution to that problem?";
+        } else if (name == "tmm3") {
+            hint = "If the story describes a solution, is that description more than superficial? Does it explain clearly how the solution actually works?";
+        } else if (name == "tmm4") {
+            hint = "If the story describes a solution, is there solid data or other evidence to show that the solution does (or doesn’t) work? If there’s no solid data, does the story describe first-hand observation or early anecdotal results?";
+        } else if (name == "tmm5") {
+            hint = "Does the story connect the problem and/or solution to a bigger insight about how the world works and, perhaps, how it could be made to work better?";
+        }
+        $("#hintcontent").text(hint);
+        var top = $(this).position().top;
+        var left = $(this).position().left;
+        $("#hintblock").css({'position': 'absolute', 'top':top + 40,'left':left + 100}).fadeIn('slow');
+    });
+
+    $("#hintclose").click(function() {
+        $("#hintblock").fadeOut("fast");
     });
 
     $("#goto-question").click(function() {
@@ -205,11 +237,35 @@ $(document).ready(function() {
             document.selection.empty();
         }
     });
-    $("#goto-review").click(function() {
-        savetag();
-        cur = cur + 1;
-        window.location.hash = pages[cur];
-        loadState(cur);
+    $("#goto-review").click(function(e) {
+        if(savetag()) {
+            cur = cur + 1;
+            window.location.hash = pages[cur];
+            loadState(cur);    
+        } else {
+            var dialog = $('<p>You will be ineligible for the iPad drawing if you submit an incomplete response. Would you like to tag some text?</p>')
+            .dialog({
+                modal: true,
+                create: function(event, ui) {
+                  $("body").css({ overflow: 'hidden' })
+                 },
+                 beforeClose: function(event, ui) {
+                  $("body").css({ overflow: 'inherit' })
+                 },
+                dialogClass: 'notagdialog',
+                buttons: {
+                    "Exclude me from the drawing": function() {
+                        $(this).dialog("close");
+                        cur = cur + 1;
+                        window.location.hash = pages[cur];
+                        loadState(cur);
+                    },
+                    "Of course": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
     });
     $("#tag-reset").click(function() {
         if(confirm('Are you sure you want to reset your response?')) {
@@ -241,7 +297,7 @@ $(document).ready(function() {
         $(this).attr("disabled","disabled");
         $("#finish").attr("disabled", "disabled");
         submitCoding(function() {
-            alert("Success! You can close the window now.");
+            window.location.href = "http://blogs.seattletimes.com/educationlab/ ";
         });
     });
     $("#finish").click(function() {
@@ -251,7 +307,9 @@ $(document).ready(function() {
             ANSWER = {};
             ANNOTATION_DATA = [];
             $("#finish").attr("disabled", false);
+            news_bool[current_index] = true;
             var index = Math.floor(Math.random() * 10);
+            current_index = index;
             $('#url-box').val(news_links[index]);
             cur = 0;
             loadState(0);    
@@ -324,19 +382,34 @@ function loadQues() {
 }
 
 function saveQues() {
-    var finish = true;
+    var unanswered = 5;
     $("#gform-container .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
         var checked = $(this).find("input[name=" + rName + "]:checked").val();
         if(!checked) {
-            alert("You need to finish all required questions before proceed.");
-            finish = false;
-            return false;
+            $(this).parent().find(".ss-missing-item").css("display", "inline");
         } else {
-            ANSWER[rName] = checked;
+            $(this).parent().find(".ss-missing-item").css("display", "none");
+            unanswered --;
         }
     });
-    return finish;
+    if(unanswered != 0) {
+        if(unanswered == 1) {
+            alert ("You missed 1 question.");
+        } else {
+            alert ("You missed " + (unanswered) + " questions.");
+        }
+        return false;
+    } else {
+        // only save data when all are finished
+        $("#gform-container .ss-choices").each(function() {
+            var rName = $(this).find("input").attr("name");
+            var checked = $(this).find("input[name=" + rName + "]:checked").val();
+            ANSWER[rName] = checked;
+        });
+        return true;
+    }
+    
 }
 
 function loadUser() {
@@ -375,20 +448,29 @@ function saveUser() {
 }
 
 function savetag() {
+    var have = false;
     $("#tag-content-container span").each(function() {
         var color = $(this).css("background-color")
         if(color) {
             var hex = rgb2hex(color).toUpperCase();
             var index = bg_color.indexOf(hex);
             var text = $(this).text();
-            if(index <= 2 && index >= 0) {
-                ANNOTATION_DATA.push({
-                    "tag": tag_l[index],
-                    "text": escapeJSON(text.replace(/(\r\n|\n|\r)/gm,""))
-                });
+            if(text != "") {
+                have = true;
+                if(index <= 2 && index >= 0) {
+                    ANNOTATION_DATA.push({
+                        "tag": tag_l[index],
+                        "text": escapeJSON(text.replace(/(\r\n|\n|\r)/gm,""))
+                    });
+                }
             }
         }
     });
+    if(!have) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 // set background color
