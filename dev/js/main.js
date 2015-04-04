@@ -23,16 +23,26 @@ var field_ids = ["entry.66704122", // name
                  "entry.1494902380" //headline
                 ];
 
-var news_links = ["http://www.seattletimes.com/education-lab/care-about-possible-change-in-seattle-school-start-times-sign-up-to-lead-neighborhood-discussion/",
-"http://www.seattletimes.com/seattle-news/crime/garfield-high-school-locked-down-during-search-for-armed-man/",
-"http://www.seattletimes.com/education-lab/black-students-do-better-in-washington-but-still-trail-whites-by-a-growing-margin/",
-"http://www.seattletimes.com/seattle-news/hard-work-not-fads-revives-rainier-beach-high/",
-"http://www.seattletimes.com/seattle-news/seattle-university-files-appeal-to-stop-union-vote-count/",
-"http://www.seattletimes.com/nation-world/penn-state-frat-suspended-over-facebook-page-with-nude-pics/",
-"http://www.seattletimes.com/education-lab/your-college-is-not-your-destiny/",
-"http://www.seattletimes.com/seattle-news/crime/seattle-drive-by-shooting-victim-dreamed-of-success-friends-say/",
-"http://www.seattletimes.com/education-lab/top-finalists-in-kent-schools-chief-search-announced/",
-"http://www.seattletimes.com/education-lab/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/"];
+var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/", // checked
+"http://www.seattletimes.com/education-lab/schools-using-new-tools-to-make-teachers-better/",
+"http://seattletimes.com/html/education/2025538481_edlabrestorativejusticexml.html",
+"http://seattletimes.com/html/education/2025176296_edlabkentdisciplinexml.html",
+"http://seattletimes.com/html/education/2025132186_edlabacademicredshirtxml.html", // checked
+"http://seattletimes.com/html/education/2024894748_edlabsmallclassesxml.html",
+"http://seattletimes.com/html/localnews/2024598767_edlabreadingbrainxml.html", // checked
+"http://seattletimes.com/html/localnews/2024590806_edlabprekoverviewxml.html",
+"http://seattletimes.com/html/education/2024591420_edlabtulsaxml.html",
+"http://www.seattletimes.com/seattle-news/education/a-roosevelt-high-drama-club-embraces-special-ed-students/",
+"http://www.seattletimes.com/seattle-news/education/tough-new-exams-in-state-test-students-math-reading-skills/",
+"http://www.seattletimes.com/seattle-news/education/uw-investigates-claims-of-racial-slurs-by-frat-members/", // 
+"http://www.seattletimes.com/seattle-news/education/state-not-joining-revolt-against-common-core-learning-model/", // checked
+"http://www.seattletimes.com/seattle-news/bellevue-schools-meet-greet-high-tech-immigrants/",
+"http://www.seattletimes.com/seattle-news/uw-loses-its-top-dawg-young-off-to-texas-am/",
+"http://www.seattletimes.com/seattle-news/higher-ed-spending-in-texas-lured-uws-president/", // checked
+"http://www.seattletimes.com/news/behind-bars-college-is-back-in-session-in-some-washington-prisons/",
+"http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/",
+"http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"];
+// var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/"];
 var news_bool = [];
 
 var bg_color = [];
@@ -45,6 +55,14 @@ var cur_art_url;
 var headline;
 var title;
 var names = [];
+
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
+function replaceAll(string, find, replace) {
+  return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
 
 function show(obj) {
     if(obj.hasClass("hidden-field")) {
@@ -105,9 +123,11 @@ function getUrlParam(name) {
 
 var referer;
 var current_index;
-
+var content_backup;
 $(document).ready(function() {
-    var index = Math.floor(Math.random((new Date()).getTime()) * 10);
+    var low  = 0;
+    var high = news_links.length;
+    var index = Math.floor(Math.random((new Date()).getTime()) * high);
     current_index = index;
     if(news_bool.length == 0) {
         for(var i = 0; i < news_links.length; i ++) {
@@ -150,6 +170,10 @@ $(document).ready(function() {
             content = json.content;
             content = content.replace(/<[^<>]+>/g, "####")
                 .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
+            // hack: remove "Education Lab"
+            content = content.replace("<br><br>&#xA0;", "");
+            content = content.replace("Education Lab<br><br>is a Seattle Times project that spotlights promising approaches to some of the most persistent challenges in public education. It is produced in partnership with the <br><br>Solutions Journalism Network<br><br>, a New York-based nonprofit that works to spread the practice of solutions-oriented journalism. Education Lab is funded by a grant from the Bill &amp; Melinda Gates Foundation.", "");
+            content = content.replace(/Click\supper\sright\sto\senlarge\<br\>\<br\>/g, "");
             renderArticle(headline, content);
             next();
         });
