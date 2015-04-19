@@ -23,26 +23,26 @@ var field_ids = ["entry.66704122", // name
                  "entry.1494902380" //headline
                 ];
 
-var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/", // checked
-"http://www.seattletimes.com/education-lab/schools-using-new-tools-to-make-teachers-better/",
-"http://seattletimes.com/html/education/2025538481_edlabrestorativejusticexml.html",
-"http://seattletimes.com/html/education/2025176296_edlabkentdisciplinexml.html",
-"http://seattletimes.com/html/education/2025132186_edlabacademicredshirtxml.html", // checked
-"http://seattletimes.com/html/education/2024894748_edlabsmallclassesxml.html",
-"http://seattletimes.com/html/localnews/2024598767_edlabreadingbrainxml.html", // checked
-"http://seattletimes.com/html/localnews/2024590806_edlabprekoverviewxml.html",
-"http://seattletimes.com/html/education/2024591420_edlabtulsaxml.html",
-"http://www.seattletimes.com/seattle-news/education/a-roosevelt-high-drama-club-embraces-special-ed-students/",
-"http://www.seattletimes.com/seattle-news/education/tough-new-exams-in-state-test-students-math-reading-skills/",
-"http://www.seattletimes.com/seattle-news/education/uw-investigates-claims-of-racial-slurs-by-frat-members/", // 
-"http://www.seattletimes.com/seattle-news/education/state-not-joining-revolt-against-common-core-learning-model/", // checked
-"http://www.seattletimes.com/seattle-news/bellevue-schools-meet-greet-high-tech-immigrants/",
-"http://www.seattletimes.com/seattle-news/uw-loses-its-top-dawg-young-off-to-texas-am/",
-"http://www.seattletimes.com/seattle-news/higher-ed-spending-in-texas-lured-uws-president/", // checked
-"http://www.seattletimes.com/news/behind-bars-college-is-back-in-session-in-some-washington-prisons/",
-"http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/",
-"http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"];
-// var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/"];
+var news_links = [// "http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/",  // done
+// "http://www.seattletimes.com/education-lab/schools-using-new-tools-to-make-teachers-better/", // done
+// "http://seattletimes.com/html/education/2025538481_edlabrestorativejusticexml.html", // done
+// "http://seattletimes.com/html/education/2025176296_edlabkentdisciplinexml.html", // done
+// "http://seattletimes.com/html/education/2025132186_edlabacademicredshirtxml.html", // done
+// "http://seattletimes.com/html/education/2024894748_edlabsmallclassesxml.html", // done
+// "http://seattletimes.com/html/localnews/2024598767_edlabreadingbrainxml.html", // done
+// "http://seattletimes.com/html/localnews/2024590806_edlabprekoverviewxml.html", // done
+// "http://seattletimes.com/html/education/2024591420_edlabtulsaxml.html", // done
+// "http://www.seattletimes.com/seattle-news/education/a-roosevelt-high-drama-club-embraces-special-ed-students/", //  done
+    // "http://www.seattletimes.com/seattle-news/education/tough-new-exams-in-state-test-students-math-reading-skills/", // done
+// "http://www.seattletimes.com/seattle-news/education/uw-investigates-claims-of-racial-slurs-by-frat-members/",  // done
+// "http://www.seattletimes.com/seattle-news/education/state-not-joining-revolt-against-common-core-learning-model/",  // done
+// "http://www.seattletimes.com/seattle-news/bellevue-schools-meet-greet-high-tech-immigrants/", // done
+"http://www.seattletimes.com/seattle-news/uw-loses-its-top-dawg-young-off-to-texas-am/", // done
+// "http://www.seattletimes.com/seattle-news/higher-ed-spending-in-texas-lured-uws-president/", // done
+// "http://www.seattletimes.com/news/behind-bars-college-is-back-in-session-in-some-washington-prisons/", // done
+// "http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/", // done
+// "http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"
+];
 var news_bool = [];
 
 var bg_color = [];
@@ -168,12 +168,73 @@ $(document).ready(function() {
         $.getJSON(url, function(json) {
             headline = json.title;
             content = json.content;
-            content = content.replace(/<[^<>]+>/g, "####")
-                .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
+            var contHtml = $.parseHTML(content);
+            $(contHtml).find(".insetbox").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".article-profile").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".article-methode").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".note").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".factoid-body").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find("figcaption").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find("blockquote").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".article-component").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".right-image").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".right-graphic").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".right-pullquote").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".image-pair").each(function() {
+                $(this).remove();
+            });
+            $(contHtml).find(".info-box").each(function() {
+                $(this).remove();
+            });
+            content = $(contHtml).html();
+            // remove links
+            content = content.replace(/<a.*?>/g, "");
+            content = content.replace(/<\/a>/g, "");
+            // remove syntax marks
+            content = content.replace(/<em>/g, "");
+            content = content.replace(/<\/em>/g, "");
+            // remove headlines
+            content = content.replace(/<h2.*?>/g, "###P");
+            content = content.replace(/<\/h2>/g, "###Q");
+            content = content.replace(/<b>/g, "###L");
+            content = content.replace(/<\/b>/g, "###M");
+            // content = content.replace(/<[^<>]+>/g, "####")
+            //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
+            
+            content = content.replace(/\#\#\#L/g, "<b>");
+            content = content.replace(/\#\#\#M/g, "</b>");
+            content = content.replace(/\#\#\#P/g, "<b>");
+            content = content.replace(/\#\#\#Q/g, "</b>");
             // hack: remove "Education Lab"
             content = content.replace("<br><br>&#xA0;", "");
-            content = content.replace("Education Lab<br><br>is a Seattle Times project that spotlights promising approaches to some of the most persistent challenges in public education. It is produced in partnership with the <br><br>Solutions Journalism Network<br><br>, a New York-based nonprofit that works to spread the practice of solutions-oriented journalism. Education Lab is funded by a grant from the Bill &amp; Melinda Gates Foundation.", "");
+            content = content.replace("<br><br>Education Lab is a Seattle Times project that spotlights promising approaches to some of the most persistent challenges in public education. It is produced in partnership with the Solutions Journalism Network, a New York-based nonprofit that works to spread the practice of solutions-oriented journalism. Education Lab is funded by a grant from the Bill &amp; Melinda Gates Foundation.", "");
             content = content.replace(/Click\supper\sright\sto\senlarge\<br\>\<br\>/g, "");
+            content = content.replace("Join Education Lab, 88.5 KPLU and the University of Washington College of Education this Wednesday for an inspiring evening of stories about what it takes to become a great teacher. The event is free, but you must register in advance.<br><br>", "");
+            content = content.replace("What does it take for advanced learning to take root at a high-poverty school?", "");
+            content = content.replace("Join IB coordinator Colin Pierce and students Tavares Tagaleo&#x2019;o and Christian Capers for a live chat about the school&#x2019;s IB program and ongoing academic progress. Check here for details.<br><br>", "");
+            content = content.replace("Pictured above: The International Baccalaureate program at Rainier Beach High School is run by IB coordinator Colin Pierce, who is focused on bringing high-end programs to low-income students. (Mike Siegel / The Seattle Times)", "");
             renderArticle(headline, content);
             next();
         });
