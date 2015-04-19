@@ -23,25 +23,25 @@ var field_ids = ["entry.66704122", // name
                  "entry.1494902380" //headline
                 ];
 
-var news_links = [// "http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/",  // done
-// "http://www.seattletimes.com/education-lab/schools-using-new-tools-to-make-teachers-better/", // done
-// "http://seattletimes.com/html/education/2025538481_edlabrestorativejusticexml.html", // done
-// "http://seattletimes.com/html/education/2025176296_edlabkentdisciplinexml.html", // done
-// "http://seattletimes.com/html/education/2025132186_edlabacademicredshirtxml.html", // done
-// "http://seattletimes.com/html/education/2024894748_edlabsmallclassesxml.html", // done
-// "http://seattletimes.com/html/localnews/2024598767_edlabreadingbrainxml.html", // done
-// "http://seattletimes.com/html/localnews/2024590806_edlabprekoverviewxml.html", // done
-// "http://seattletimes.com/html/education/2024591420_edlabtulsaxml.html", // done
-// "http://www.seattletimes.com/seattle-news/education/a-roosevelt-high-drama-club-embraces-special-ed-students/", //  done
-    // "http://www.seattletimes.com/seattle-news/education/tough-new-exams-in-state-test-students-math-reading-skills/", // done
-// "http://www.seattletimes.com/seattle-news/education/uw-investigates-claims-of-racial-slurs-by-frat-members/",  // done
-// "http://www.seattletimes.com/seattle-news/education/state-not-joining-revolt-against-common-core-learning-model/",  // done
-// "http://www.seattletimes.com/seattle-news/bellevue-schools-meet-greet-high-tech-immigrants/", // done
+var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduation-rate-as-rainier-beach-gamble-pays-off/",  // done
+"http://www.seattletimes.com/education-lab/schools-using-new-tools-to-make-teachers-better/", // done
+"http://seattletimes.com/html/education/2025538481_edlabrestorativejusticexml.html", // done
+"http://seattletimes.com/html/education/2025176296_edlabkentdisciplinexml.html", // done
+"http://seattletimes.com/html/education/2025132186_edlabacademicredshirtxml.html", // done
+"http://seattletimes.com/html/education/2024894748_edlabsmallclassesxml.html", // done
+"http://seattletimes.com/html/localnews/2024598767_edlabreadingbrainxml.html", // done
+"http://seattletimes.com/html/localnews/2024590806_edlabprekoverviewxml.html", // done
+"http://seattletimes.com/html/education/2024591420_edlabtulsaxml.html", // done
+"http://www.seattletimes.com/seattle-news/education/a-roosevelt-high-drama-club-embraces-special-ed-students/", //  done
+    "http://www.seattletimes.com/seattle-news/education/tough-new-exams-in-state-test-students-math-reading-skills/", // done
+"http://www.seattletimes.com/seattle-news/education/uw-investigates-claims-of-racial-slurs-by-frat-members/",  // done
+"http://www.seattletimes.com/seattle-news/education/state-not-joining-revolt-against-common-core-learning-model/",  // done
+"http://www.seattletimes.com/seattle-news/bellevue-schools-meet-greet-high-tech-immigrants/", // done
 "http://www.seattletimes.com/seattle-news/uw-loses-its-top-dawg-young-off-to-texas-am/", // done
-// "http://www.seattletimes.com/seattle-news/higher-ed-spending-in-texas-lured-uws-president/", // done
-// "http://www.seattletimes.com/news/behind-bars-college-is-back-in-session-in-some-washington-prisons/", // done
-// "http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/", // done
-// "http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"
+"http://www.seattletimes.com/seattle-news/higher-ed-spending-in-texas-lured-uws-president/", // done
+"http://www.seattletimes.com/news/behind-bars-college-is-back-in-session-in-some-washington-prisons/", // done
+"http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/", // done
+"http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"
 ];
 var news_bool = [];
 
