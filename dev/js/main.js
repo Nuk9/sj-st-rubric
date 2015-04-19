@@ -43,7 +43,9 @@ var news_links = ["http://www.seattletimes.com/2015/03/stunning-surge-in-graduat
 "http://www.seattletimes.com/seattle-news/statersquos-first-charter-school-in-disarray/", // done
 "http://www.seattletimes.com/seattle-news/seattlersquos-nyland-skilled-at-working-across-school-factions/"
 ];
-var news_bool = [];
+var news_read_arr = [];
+var available_news = [];
+
 
 var bg_color = [];
 var ANNOTATION_DATA = [];
@@ -124,16 +126,72 @@ function getUrlParam(name) {
 var referer;
 var current_index;
 var content_backup;
-$(document).ready(function() {
-    var low  = 0;
-    var high = news_links.length;
-    var index = Math.floor(Math.random((new Date()).getTime()) * high);
-    current_index = index;
-    if(news_bool.length == 0) {
-        for(var i = 0; i < news_links.length; i ++) {
-            news_bool.push(false);
-        }    
+
+function gen_article_array(read) {
+    news_read_arr = [];
+    var i = 0;
+    for(i = 0; i < news_links.length; i ++) {
+        news_read_arr.push(0);
     }
+    
+    var read_arr = read.split(",");
+    for(i = 0; i < read_arr.length; i ++ ) {
+        if(read_arr[i].length != 0) {
+            news_read_arr[parseInt(read_arr[i])] = 1;
+        }
+    }
+    available_news = [];
+    var i = 0;
+    for(i = 0; i < news_links.length; i ++) {
+        if(news_read_arr[i] == 0) {
+            available_news.push(i);
+        }
+    }
+    return available_news;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function getRandomNewsFromAvailable() {
+    var low  = 0;
+    var high = available_news.length;
+    var index = Math.floor(Math.random((new Date()).getTime()) * high);
+    return available_news[index];
+}
+
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function addReadArticle(index) {
+    var cookie = getCookie("siteRead");
+    cookie = cookie + index + ",";
+    setCookie("siteRead", cookie, 10);
+    return getCookie("siteRead");
+}
+
+function clearCookie() {
+    setCookie("siteRead", "", 10);
+}
+
+$(document).ready(function() {
+    clearCookie();
+    gen_article_array(getCookie("siteRead"));
+    var index = getRandomNewsFromAvailable();
+    current_index = index;
     $('#url-box').val(news_links[index]);
     $('#url-box').attr("readonly", true);
     $("#url-box").keydown(function(event){
@@ -220,8 +278,8 @@ $(document).ready(function() {
             content = content.replace(/<\/h2>/g, "###Q");
             content = content.replace(/<b>/g, "###L");
             content = content.replace(/<\/b>/g, "###M");
-            // content = content.replace(/<[^<>]+>/g, "####")
-            //     .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
+            content = content.replace(/<[^<>]+>/g, "####")
+                .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
             
             content = content.replace(/\#\#\#L/g, "<b>");
             content = content.replace(/\#\#\#M/g, "</b>");
@@ -392,8 +450,9 @@ $(document).ready(function() {
             ANSWER = {};
             ANNOTATION_DATA = [];
             $("#finish").attr("disabled", false);
-            news_bool[current_index] = true;
-            var index = Math.floor(Math.random() * 10);
+            addReadArticle(current_index);
+            gen_article_array(getCookie("siteRead"));
+            var index = getRandomNewsFromAvailable();
             current_index = index;
             $('#url-box').val(news_links[index]);
             cur = 0;
@@ -470,7 +529,7 @@ function saveQues() {
     var unanswered = 5;
     $("#gform-container .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
-        var checked = $(this).find("input[name=" + rName + "]:checked").val();
+        var checked = $(this).find("input[name='" + rName + "']:checked").val();
         if(!checked) {
             $(this).parent().find(".ss-missing-item").css("display", "inline");
         } else {
@@ -489,7 +548,7 @@ function saveQues() {
         // only save data when all are finished
         $("#gform-container .ss-choices").each(function() {
             var rName = $(this).find("input").attr("name");
-            var checked = $(this).find("input[name=" + rName + "]:checked").val();
+            var checked = $(this).find("input[name='" + rName + "']:checked").val();
             ANSWER[rName] = checked;
         });
         return true;
@@ -519,7 +578,7 @@ function saveUser() {
     var other_val = $("#entry_1739474268_other_option_response").val();    
     $("#user-info .ss-choices").each(function() {
         var rName = $(this).find("input").attr("name");
-        var checked = $(this).find("input[name=" + rName + "]:checked").val();
+        var checked = $(this).find("input[name='" + rName + "']:checked").val();
         if(!checked) {
             // alert("You need to finish all required questions before proceed.");
         } else {
