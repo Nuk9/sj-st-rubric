@@ -188,7 +188,7 @@ function clearCookie() {
 }
 
 $(document).ready(function() {
-    clearCookie();
+    // clearCookie();
     gen_article_array(getCookie("siteRead"));
     var index = getRandomNewsFromAvailable();
     current_index = index;
@@ -440,6 +440,7 @@ $(document).ready(function() {
         $(this).attr("disabled","disabled");
         $("#finish").attr("disabled", "disabled");
         submitCoding(function() {
+            addReadArticle(current_index); // update cookie
             window.location.href = "http://blogs.seattletimes.com/educationlab/ ";
         });
     });
@@ -450,7 +451,7 @@ $(document).ready(function() {
             ANSWER = {};
             ANNOTATION_DATA = [];
             $("#finish").attr("disabled", false);
-            addReadArticle(current_index);
+            addReadArticle(current_index); // update cookie
             gen_article_array(getCookie("siteRead"));
             var index = getRandomNewsFromAvailable();
             current_index = index;
