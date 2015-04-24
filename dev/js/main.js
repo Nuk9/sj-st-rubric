@@ -278,6 +278,7 @@ $(document).ready(function() {
             content = content.replace(/<\/h2>/g, "###Q");
             content = content.replace(/<b>/g, "###L");
             content = content.replace(/<\/b>/g, "###M");
+            content = content.replace(/\<strong\>Related\:\&nbsp\;.*/g, "");
             content = content.replace(/<[^<>]+>/g, "####")
                 .replace(/((\#\#\#\#)(\s+)?)+/g, "<br><br>");
             
@@ -293,6 +294,7 @@ $(document).ready(function() {
             content = content.replace("What does it take for advanced learning to take root at a high-poverty school?", "");
             content = content.replace("Join IB coordinator Colin Pierce and students Tavares Tagaleo&#x2019;o and Christian Capers for a live chat about the school&#x2019;s IB program and ongoing academic progress. Check here for details.<br><br>", "");
             content = content.replace("Pictured above: The International Baccalaureate program at Rainier Beach High School is run by IB coordinator Colin Pierce, who is focused on bringing high-end programs to low-income students. (Mike Siegel / The Seattle Times)", "");
+            // hack: remove "related works"
             renderArticle(headline, content);
             next();
         });
