@@ -21,10 +21,10 @@
 				. $q2 . "', '" . $q3 . "', '" . $q4 . "', '" . $q5 . "',  '" . $url . "', '"
 				. $content . "', '" . $anno . "', '" . $headline . "'"; 
 	// insert into mysql table sj.response
-	$servername = "journalism-rubrics.org";
+	$servername = "127.0.0.1";
 	$username = "miprub";
 	$password = "LearMetrics1";
-	$dbname = "";
+	$dbname = "sj";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
@@ -37,7 +37,7 @@
 	if(mysqli_query($conn, $sql)) {
 		echo "{data: 'success'}";
 	} else {
-		echo "{data: 'fail'}";
+		echo mysqli_error();
 	}
 	mysqli_close($conn);
 ?>
