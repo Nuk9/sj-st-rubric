@@ -22,9 +22,9 @@
 				. $content . "', '" . $anno . "', '" . $headline . "'"; 
 	// insert into mysql table sj.response
 	$servername = "http://journalism-rubrics.org";
-	$username = "miprubric";
+	$username = "miprub";
 	$password = "LearMetrics1";
-	$dbname = "sj";
+	$dbname = "";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if($conn->connect_error) {
