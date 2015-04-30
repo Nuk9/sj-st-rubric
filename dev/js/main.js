@@ -526,7 +526,7 @@ function submitCoding(cont) {
         data: data,
         complete: cont
     }).done(function(data) {
-        alert(data);
+        // alert(data);
     });
 }
 
