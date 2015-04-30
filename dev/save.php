@@ -1,5 +1,12 @@
 <?php
 	// print_r($_POST);
+	mb_internal_encoding("UTF-8");
+	mb_http_output( "UTF-8" );
+	header('Content-Type: text/html; charset=utf-8');
+	mb_http_input('UTF-8');
+	mb_language('uni');
+	mb_regex_encoding('UTF-8');
+	ob_start('mb_output_handler');
 	$name = $_POST['entry_66704122'];
 	$email = $_POST['entry_2135852305'];
 	$status = $_POST['entry_1739474268'];
@@ -27,17 +34,22 @@
 	$dbname = "sj";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
+
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
+        #mysqli_query($conn, "SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
+	#mysqli_query($conn, "SET NAMES utf8;");
+	mysqli_set_charset($conn, "utf8");
 	$sql = "INSERT INTO response (uname, email, status, status_other, interest, q1, q2, q3, q4, q5, url, content, tag, headline) VALUES " 
 	. " (". $toinsert . ")";
+	#$sql = $conn->real_escape_string($sql);
 	// echo $sql;
 	// return insert result
 	if(mysqli_query($conn, $sql)) {
-		echo "{data: 'success'}";
+		echo $anno;
 	} else {
-		echo mysqli_error();
+		echo "{data:fail}";
 	}
 	mysqli_close($conn);
 ?>
