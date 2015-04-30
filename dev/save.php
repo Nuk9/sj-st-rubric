@@ -21,7 +21,7 @@
 				. $q2 . "', '" . $q3 . "', '" . $q4 . "', '" . $q5 . "',  '" . $url . "', '"
 				. $content . "', '" . $anno . "', '" . $headline . "'"; 
 	// insert into mysql table sj.response
-	$servername = "http://journalism-rubrics.org";
+	$servername = "journalism-rubrics.org";
 	$username = "miprub";
 	$password = "LearMetrics1";
 	$dbname = "";
