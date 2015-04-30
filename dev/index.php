@@ -12,7 +12,9 @@
   
   <body>
     <div id="container">
-
+    <?php
+      
+    ?>
     <!-- Start of intro -->
     <div id="intro" class="hidden-field page">
       <div id="logo">
@@ -58,15 +60,11 @@
       Please answer the following questions based on your reading of the story. Click on the “Tell Me More” button at the end of each question for an explanation.
       <div class="question-box">
         <!--   BEGINNING OF GOOGLE FORM -->
-        <div id="gform-container">
-
-          
+        <div id="gform-container">          
           <form action=
                 "https://docs.google.com/forms/d/13EyHZbX1Ln3M4Wqrl1dl8C8qiLt8cjL4ip00A016MI8/formResponse"
-                id="ss-form" method="post" name="ss-form" onsubmit="" target="_self">
+                id="ss-form-fake" method="post" name="ss-form" onsubmit="" target="_self">
             <div style="margin-left: 2em; padding-left: 0">
-              
-              
               <div class="ss-form-question errorbox-good">
                 <div class="ss-item ss-item-required ss-radio" dir="ltr">
                   <div class="ss-form-entry">
@@ -414,7 +412,6 @@
                   <div class="ss-form-entry">
                     <label class="ss-q-item-label" for=
                            "entry_98167410"></label>
-
                     <div class="ss-q-title">
                       <label class="ss-q-item-label" for=
                              "entry_98167410">What is your name?
@@ -503,8 +500,6 @@
         <button id="rv-bt" type="button"> Submit my responses and exit. </button>
         <button id="finish" type="button">  Submit my responses and analyze another article </button>
       </div>
-
-      
     </div>
     </div> <!-- End of container -->
     <!-- Start of highlight bar -->
@@ -518,6 +513,177 @@
       <input id='remove' class="tagbut" name="tag" type="radio" value="remove" data-color="transparent" />
       <strong id=remove-tag'>Remove</strong>  <br/>
     </div>
-    <iframe src="https://docs.google.com/forms/d/1A5M4T8TGWyfUPsdrcRjvVYbAJLhPA-VR-02830EqLE0/viewform?embedded=true" width="0" height="0" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+
+    
+    <!-- Start of Google Form -->
+    <div id="ss-form-realgform">
+      <form action="https://docs.google.com/forms/d/1A5M4T8TGWyfUPsdrcRjvVYbAJLhPA-VR-02830EqLE0/formResponse" method="POST" id="ss-form" target="_self" onsubmit=""><ol role="list" class="ss-question-list" style="display: none; padding-left: 0">
+<div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_66704122"><div class="ss-q-title">What is your name?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.66704122" value="" class="ss-q-short" id="entry_66704122" dir="auto" aria-label="What is your name?  " title="">
+<div class="error-message" id="1547914906_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2135852305"><div class="ss-q-title">What is your email address? (For drawing purpose)
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2135852305" value="" class="ss-q-short" id="entry_2135852305" dir="auto" aria-label="What is your email address? (For drawing purpose)  " title="">
+<div class="error-message" id="2139953738_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_802414739"><div class="ss-q-title">Please tell us about your interest in education issues. Are you a:
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Please tell us about your interest in education issues. Are you a:  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Parent" id="group_1739474268_1" role="radio" class="ss-q-radio" aria-label="Parent"></span>
+<span class="ss-choice-label">Parent</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Student" id="group_1739474268_2" role="radio" class="ss-q-radio" aria-label="Student"></span>
+<span class="ss-choice-label">Student</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Educator" id="group_1739474268_3" role="radio" class="ss-q-radio" aria-label="Educator"></span>
+<span class="ss-choice-label">Educator</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Community Leader" id="group_1739474268_4" role="radio" class="ss-q-radio" aria-label="Community Leader"></span>
+<span class="ss-choice-label">Community Leader</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Taxpayer" id="group_1739474268_5" role="radio" class="ss-q-radio" aria-label="Taxpayer"></span>
+<span class="ss-choice-label">Taxpayer</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="__other_option__" id="group_1739474268_6" role="radio" class="ss-q-radio ss-q-other-toggle"></span>
+<span class="ss-choice-label">Other:</span></label>
+<span class="ss-q-other-container goog-inline-block"><input type="text" name="entry.1739474268.other_option_response" value="" class="ss-q-other" id="entry_1739474268_other_option_response" dir="auto" aria-label="Other"></span>
+</li></ul>
+<div class="error-message" id="802414739_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1610175360"><div class="ss-q-title">Are you interested in helping us analyze more stories in the future?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Are you interested in helping us analyze more stories in the future?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1398427809" value="Yes" id="group_1398427809_1" role="radio" class="ss-q-radio" aria-label="Yes"></span>
+<span class="ss-choice-label">Yes</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1398427809" value="No" id="group_1398427809_2" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li></ul>
+<div class="error-message" id="1610175360_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2064572485"><div class="ss-q-title">Does the story explain the causes of a problem?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Does the story explain the causes of a problem?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1918432746" value="No" id="group_1918432746_1" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1918432746" value="Somewhat" id="group_1918432746_2" role="radio" class="ss-q-radio" aria-label="Somewhat"></span>
+<span class="ss-choice-label">Somewhat</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1918432746" value="Clearly" id="group_1918432746_3" role="radio" class="ss-q-radio" aria-label="Clearly"></span>
+<span class="ss-choice-label">Clearly</span>
+</label></li></ul>
+<div class="error-message" id="2064572485_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_600925115"><div class="ss-q-title">Does the story present an associated solution to that problem?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Does the story present an associated solution to that problem?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.477095358" value="No" id="group_477095358_1" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.477095358" value="Somewhat" id="group_477095358_2" role="radio" class="ss-q-radio" aria-label="Somewhat"></span>
+<span class="ss-choice-label">Somewhat</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.477095358" value="Clearly" id="group_477095358_3" role="radio" class="ss-q-radio" aria-label="Clearly"></span>
+<span class="ss-choice-label">Clearly</span>
+</label></li></ul>
+<div class="error-message" id="600925115_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_860146877"><div class="ss-q-title">Does the story address the problem solving and how-to details of implementation?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Does the story address the problem solving and how-to details of implementation?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1554396570" value="No" id="group_1554396570_1" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1554396570" value="Somewhat" id="group_1554396570_2" role="radio" class="ss-q-radio" aria-label="Somewhat"></span>
+<span class="ss-choice-label">Somewhat</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1554396570" value="Clearly" id="group_1554396570_3" role="radio" class="ss-q-radio" aria-label="Clearly"></span>
+<span class="ss-choice-label">Clearly</span>
+</label></li></ul>
+<div class="error-message" id="860146877_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_597985373"><div class="ss-q-title">Does the story present results, or indications of progress, linked to the solution?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Does the story present results, or indications of progress, linked to the solution?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1631672294" value="No" id="group_1631672294_1" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1631672294" value="Somewhat" id="group_1631672294_2" role="radio" class="ss-q-radio" aria-label="Somewhat"></span>
+<span class="ss-choice-label">Somewhat</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1631672294" value="Clearly" id="group_1631672294_3" role="radio" class="ss-q-radio" aria-label="Clearly"></span>
+<span class="ss-choice-label">Clearly</span>
+</label></li></ul>
+<div class="error-message" id="597985373_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1183313616"><div class="ss-q-title">Does the story convey an insight or teachable lesson?
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Does the story convey an insight or teachable lesson?  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1970954995" value="No" id="group_1970954995_1" role="radio" class="ss-q-radio" aria-label="No"></span>
+<span class="ss-choice-label">No</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1970954995" value="Somewhat" id="group_1970954995_2" role="radio" class="ss-q-radio" aria-label="Somewhat"></span>
+<span class="ss-choice-label">Somewhat</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1970954995" value="Clearly" id="group_1970954995_3" role="radio" class="ss-q-radio" aria-label="Clearly"></span>
+<span class="ss-choice-label">Clearly</span>
+</label></li></ul>
+<div class="error-message" id="1183313616_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_354358979"><div class="ss-q-title">URL
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.354358979" value="" class="ss-q-short" id="entry_354358979" dir="auto" aria-label="URL  " title="">
+<div class="error-message" id="561217911_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-paragraph-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_775723807"><div class="ss-q-title">Content
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<textarea name="entry.775723807" rows="8" cols="0" class="ss-q-long" id="entry_775723807" dir="auto" aria-label="Content  "></textarea>
+<div class="error-message" id="699781366_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-paragraph-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_903406015"><div class="ss-q-title">Annotation
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<textarea name="entry.903406015" rows="8" cols="0" class="ss-q-long" id="entry_903406015" dir="auto" aria-label="Annotation  "></textarea>
+<div class="error-message" id="1684828381_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1494902380"><div class="ss-q-title">Headline
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.1494902380" value="" class="ss-q-short" id="entry_1494902380" dir="auto" aria-label="Headline  " title="">
+<div class="error-message" id="1764037493_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div>
+<input type="hidden" name="draftResponse" value="[,,&quot;4996399877183524830&quot;]
+">
+<input type="hidden" name="pageHistory" value="0">
+
+
+<input type="hidden" name="fbzx" value="4996399877183524830">
+
+<div class="ss-item ss-navigate"><table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+<input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action ">
+<div class="ss-password-warning ss-secondary-text">Never submit passwords through Google Forms.</div></td>
+</tr></tbody></table></div></ol></form></div>
+    <!-- End of Google Form -->
+
+    
   </body>
 </html>

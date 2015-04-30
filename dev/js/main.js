@@ -4,7 +4,8 @@ var pages = ["#intro", "#article", "#question", "#tagpage", "#review"];
 var tag_l = ["problem", "solution", "result"];
 
 var readability_url = "https://www.readability.com/api/content/v1/parser?token=43e6e0e0b590f00a095a6a0e64f6c9da11783a5a&callback=?&url=";
-var gform_url = "https://docs.google.com/forms/d/1A5M4T8TGWyfUPsdrcRjvVYbAJLhPA-VR-02830EqLE0/formResponse";
+// var gform_url = "https://docs.google.com/forms/d/1A5M4T8TGWyfUPsdrcRjvVYbAJLhPA-VR-02830EqLE0/formResponse";
+var gform_url = "/dev/save.php";
 // name , ques 1 ,..., ques 10, article_url, article_content, article_annotation, article_headline
 // var field_ids = ["entry.215751540","entry.623526571","entry.1476092598","entry.309895902","entry.571080810","entry.1188901335","entry.1897769701","entry.404944299","entry.1910145078","entry.926592991","entry.562869012","entry.1780171989","entry.1227660023","entry.528936757","entry.1002450135"];
 var field_ids = ["entry.66704122", // name
@@ -188,6 +189,7 @@ function clearCookie() {
 }
 
 $(document).ready(function() {
+    
     // clearCookie();
     gen_article_array(getCookie("siteRead"));
     var index = getRandomNewsFromAvailable();
@@ -480,6 +482,7 @@ function escapeJSON(jsonString) {
     ;
 }
 
+
 function submitCoding(cont) {
     var data = "";
     var url = encodeURIComponent($("#url-box").val());
@@ -500,7 +503,14 @@ function submitCoding(cont) {
         } else if (i == field_ids.length - 1) { // 14: article_headline
             data = data + hl;
         } else if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) {
-            data = data + USER[field_ids[i]];
+            // 0: user name
+            // 1: user email
+            // 2: education status
+            // 3: status other option
+            // 4: interest
+            if(USER[field_ids[i]]) {
+                data = data + USER[field_ids[i]];
+            }
         } else {
             data = data + ANSWER[names[j]];
             j = j + 1;
@@ -509,11 +519,14 @@ function submitCoding(cont) {
             data = data + "&"
         }
     }
+    data = data+"&draftResponse=[,,\"4996399877183524830\"]"+"&pageHistory=0"+"&fbzx=7337225476764607371"+"&submit=Submit";
     $.ajax({
         type: "POST",
         url: gform_url,
         data: data,
         complete: cont
+    }).done(function(data) {
+        alert(data);
     });
 }
 
