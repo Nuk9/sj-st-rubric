@@ -25,25 +25,39 @@
 	    $password = "LearMetrics1";
 	    $dbname = "sj";
       $csv_file = "./response.csv";
+      $csv_mac_file = "./response-excel-mac.csv";
+      $csv_win_file = "./response-excel-win.csv";
       $conn = new mysqli($servername, $username, $password, $dbname);
       if($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 	    }
 	    mysqli_set_charset($conn, "utf8");
+      $conn->query("SET NAMES utf8");
+      
       function export_to_csv() {
         global $csv_file;
         if(file_exists($csv_file)) {
           unlink($csv_file);
         }
+        if(file_exists($csv_mac_file)) {
+          unlink($csv_mac_file);
+        }
+        if(file_exists($csv_win_file)) {
+          unlink($csv_win_file);
+        }
         global $conn;
         $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response";
-        $conn->query("SET NAMES 'utf8'");
+        
         $resp = $conn->query($query);
         $output = fopen($csv_file, 'w');
         while($rows = mysqli_fetch_array($resp, MYSQLI_ASSOC)) {
           fputcsv($output, $rows);  
         }
         fclose($output);
+        // convert response.csv to response-excel-mac.csv
+        shell_exec("iconv -f UTF8 -t MACINTOSH response.csv > response-excel-mac.csv");
+        // convert response.csv to response-excel-win.csv
+        shell_exec("iconv -f UTF8 -t WINDOWS-1252 response.csv > response-excel-win.csv");
       }
       
       function get_count() {
@@ -69,7 +83,15 @@
         } else {
       ?>
         <a href="/dev/response.csv" download>
-          <button> Download data in csv format </button>
+          <button> Download the data (utf-8) </button>
+        </a>
+        <br/>
+        <a href="/dev/response-excel-mac.csv" download>
+          <button> Download the data for MS Excel for Mac OS </button>
+        </a>
+        <br/>
+        <a href="/dev/response-excel-win.csv" download>
+          <button> Download the data for MS Excel for Windows </button>
         </a>
       <?php
         }
