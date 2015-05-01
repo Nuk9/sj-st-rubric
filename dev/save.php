@@ -18,11 +18,11 @@
 		$occupation = $status;
 	}
 	$interest = $_POST['entry_1398427809'];
-	$q1 = $_POST['entry_1918432746'];
-	$q2 = $_POST['entry_477095358'];
-	$q3 = $_POST['entry_1554396570'];
-	$q4 = $_POST['entry_1631672294'];
-	$q5 = $_POST['entry_1970954995'];
+	$q1 = $_POST['entry_1918432746']; //  Does the story explain the causes of a problem?
+	$q2 = $_POST['entry_477095358']; // Does the story present an associated solution to that problem?
+	$q3 = $_POST['entry_1554396570']; // Does the story address the problem solving and how-to details of implementation?
+	$q4 = $_POST['entry_1631672294']; // Does the story present results, or indications of progress, linked to the solution? 
+	$q5 = $_POST['entry_1970954995']; // Does the story convey an insight or teachable lesson?
 	$url = $_POST['entry_354358979'];
 	$content = $_POST['entry_775723807'];
 	$anno = $_POST['entry_903406015'];
