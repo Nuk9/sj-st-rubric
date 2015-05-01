@@ -37,10 +37,12 @@
         }
         global $conn;
         $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response";
+        $conn->query("SET NAMES 'utf8'");
         $resp = $conn->query($query);
-        $rows = mysqli_fetch_array($resp, MYSQLI_ASSOC);
         $output = fopen($csv_file, 'w');
-        fputcsv($output, $rows);
+        while($rows = mysqli_fetch_array($resp, MYSQLI_ASSOC)) {
+          fputcsv($output, $rows);  
+        }
         fclose($output);
       }
       
