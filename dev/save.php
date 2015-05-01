@@ -11,6 +11,12 @@
 	$email = $_POST['entry_2135852305'];
 	$status = $_POST['entry_1739474268'];
 	$status_other = $_POST['entry_1739474268_other_option_response'];
+    $occupation = "";
+	if(strcmp($status, "Other") == 0) {
+		$occupation = $status_other;
+	} else {
+		$occupation = $status;
+	}
 	$interest = $_POST['entry_1398427809'];
 	$q1 = $_POST['entry_1918432746'];
 	$q2 = $_POST['entry_477095358'];
@@ -23,8 +29,8 @@
 	$headline = $_POST['entry_1494902380'];
 	// generate a uid for this response
 	$uid = uniqid();
-	$toinsert = "'" . $name . "', '" . $email . "', '" . $status . "', '"
-				. $status_other . "', '" . $interest . "', '" . $q1 . "', '"
+	$toinsert = "'" . $name . "', '" . $email . "', '" . $occupation . "', '"
+				. $interest . "', '" . $q1 . "', '"
 				. $q2 . "', '" . $q3 . "', '" . $q4 . "', '" . $q5 . "',  '" . $url . "', '"
 				. $content . "', '" . $anno . "', '" . $headline . "'"; 
 	// insert into mysql table sj.response
@@ -38,16 +44,14 @@
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-        #mysqli_query($conn, "SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
-	#mysqli_query($conn, "SET NAMES utf8;");
 	mysqli_set_charset($conn, "utf8");
-	$sql = "INSERT INTO response (uname, email, status, status_other, interest, q1, q2, q3, q4, q5, url, content, tag, headline) VALUES " 
+	$sql = "INSERT INTO response (uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline) VALUES " 
 	. " (". $toinsert . ")";
 	#$sql = $conn->real_escape_string($sql);
 	// echo $sql;
 	// return insert result
 	if(mysqli_query($conn, $sql)) {
-		echo $anno;
+		echo "{data:success}";
 	} else {
 		echo "{data:fail}";
 	}
