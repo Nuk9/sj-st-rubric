@@ -12,7 +12,7 @@
 	$status = $_POST['entry_1739474268'];
 	$status_other = $_POST['entry_1739474268_other_option_response'];
     $occupation = "";
-	if(strcmp($status, "Other") == 0) {
+	if(strcmp($status, "__other_option__") == 0) {
 		$occupation = $status_other;
 	} else {
 		$occupation = $status;
