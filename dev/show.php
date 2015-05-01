@@ -25,8 +25,7 @@
 	    $password = "LearMetrics1";
 	    $dbname = "sj";
       $csv_file = "./response.csv";
-      $csv_mac_file = "./response-excel-mac.csv";
-      $csv_win_file = "./response-excel-win.csv";
+      $csv_win_file = "./response-excel.csv";
       $conn = new mysqli($servername, $username, $password, $dbname);
       if($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
@@ -38,9 +37,6 @@
         global $csv_file;
         if(file_exists($csv_file)) {
           unlink($csv_file);
-        }
-        if(file_exists($csv_mac_file)) {
-          unlink($csv_mac_file);
         }
         if(file_exists($csv_win_file)) {
           unlink($csv_win_file);
@@ -54,10 +50,8 @@
           fputcsv($output, $rows);  
         }
         fclose($output);
-        // convert response.csv to response-excel-mac.csv
-        shell_exec("iconv -f UTF8 -t MACINTOSH response.csv > response-excel-mac.csv");
         // convert response.csv to response-excel-win.csv
-        shell_exec("iconv -f UTF8 -t WINDOWS-1252 response.csv > response-excel-win.csv");
+        shell_exec("iconv -f UTF8 -t WINDOWS-1252 response.csv > response-excel.csv");
       }
       
       function get_count() {
@@ -83,15 +77,12 @@
         } else {
       ?>
         <a href="/dev/response.csv" download>
-          <button> Download the data (utf-8) </button>
+          <button> Download the data (UTF-8) </button>
         </a>
         <br/>
-        <a href="/dev/response-excel-mac.csv" download>
-          <button> Download the data for MS Excel for Mac OS </button>
-        </a>
         <br/>
-        <a href="/dev/response-excel-win.csv" download>
-          <button> Download the data for MS Excel for Windows </button>
+        <a href="/dev/response-excel.csv" download>
+          <button> Download the data for MS Excel (WINDOWS-1252) </button>
         </a>
       <?php
         }
