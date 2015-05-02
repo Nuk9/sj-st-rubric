@@ -35,6 +35,7 @@
       
       function export_to_csv() {
         global $csv_file;
+        global $csv_win_file;
         if(file_exists($csv_file)) {
           unlink($csv_file);
         }
@@ -76,7 +77,7 @@
      <?php
         } else {
       ?>
-        <a href="/dev/response.csv" download><button> Download the data (UTF-8)</button></a>
+        <a href="/dev/response.csv" download><button> Download the data for Google Spreadsheet (UTF-8)</button></a>
         <br/>
         <a href="/dev/response-excel.csv" download><button> Download the data for MS Excel (WINDOWS-1252) </button></a>
       <?php
