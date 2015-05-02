@@ -76,14 +76,9 @@
      <?php
         } else {
       ?>
-        <a href="/dev/response.csv" download>
-          <button> Download the data (UTF-8) </button>
-        </a>
+        <a href="/dev/response.csv" download><button> Download the data (UTF-8)</button></a>
         <br/>
-        <br/>
-        <a href="/dev/response-excel.csv" download>
-          <button> Download the data for MS Excel (WINDOWS-1252) </button>
-        </a>
+        <a href="/dev/response-excel.csv" download><button> Download the data for MS Excel (WINDOWS-1252) </button></a>
       <?php
         }
       ?>
