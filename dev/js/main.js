@@ -611,7 +611,7 @@ function savetag() {
     var have = false;
     $("#tag-content-container span").each(function() {
         var color = $(this).css("background-color")
-        if(color) {
+        if(color && color !== "transparent") {
             var hex = rgb2hex(color).toUpperCase();
             var index = bg_color.indexOf(hex);
             var text = $(this).text();
