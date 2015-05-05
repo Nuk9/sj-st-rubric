@@ -17,9 +17,9 @@
         <a href="/"></a>
       </div>
       <h2>Data Export Page</h2>
-      <a href="/dev/response.csv" class="db-flush" download><button> Download the data for Google Spreadsheet (UTF-8)</button></a>
+      <a href="" target="/dev/response.csv" class="db-flush" download><button> Download the data for Google Spreadsheet (UTF-8)</button></a>
       <br/>
-      <a href="/dev/response-excel.csv" class="db-flush" download><button> Download the data for MS Excel (WINDOWS-1252) </button></a>
+      <a href="" target="/dev/response-excel.csv" class="db-flush" download><button> Download the data for MS Excel (WINDOWS-1252) </button></a>
       <table></table>
 	  </div>
     <script type="text/javascript">
@@ -32,7 +32,7 @@
             type: "POST",
             data: "request-flush",
             success: function() {
-              window.location.href = button.attr('href');
+              window.location.href = button.attr('target');
             }
           });
         });
