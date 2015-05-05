@@ -32,16 +32,17 @@
 	    }
 	    mysqli_set_charset($conn, "utf8");
       $conn->query("SET NAMES utf8");
+      if(file_exists($csv_file)) {
+          unlink($csv_file);
+      }
+      if(file_exists($csv_win_file)) {
+          unlink($csv_win_file);
+      }
       
       function export_to_csv() {
         global $csv_file;
         global $csv_win_file;
-        if(file_exists($csv_file)) {
-          unlink($csv_file);
-        }
-        if(file_exists($csv_win_file)) {
-          unlink($csv_win_file);
-        }
+        
         global $conn;
         $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response";
         
@@ -51,7 +52,7 @@
           fputcsv($output, $rows);  
         }
         fclose($output);
-        // convert response.csv to response-excel-win.csv
+        // convert response.csv to response-excel-win.csv, sync
         shell_exec("iconv -f UTF8 -t WINDOWS-1252 response.csv > response-excel.csv");
       }
       
