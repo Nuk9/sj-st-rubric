@@ -11,12 +11,7 @@
 	$email = $_POST['entry_2135852305'];
 	$status = $_POST['entry_1739474268'];
 	$status_other = $_POST['entry_1739474268_other_option_response'];
-    $occupation = "";
-	if(strcmp($status, "__other_option__") == 0) {
-		$occupation = $status_other;
-	} else {
-		$occupation = $status;
-	}
+	$occupation = $status;
 	$interest = $_POST['entry_1398427809'];
 	$q1 = $_POST['entry_1918432746']; //  Does the story explain the causes of a problem?
 	$q2 = $_POST['entry_477095358']; // Does the story present an associated solution to that problem?

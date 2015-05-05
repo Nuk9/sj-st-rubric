@@ -445,7 +445,7 @@ $(document).ready(function() {
         $("#finish").attr("disabled", "disabled");
         submitCoding(function() {
             addReadArticle(current_index); // update cookie
-            window.location.href = "http://blogs.seattletimes.com/educationlab/ ";
+            window.location.href = "http://www.seattletimes.com/education-lab/";
         });
     });
     $("#finish").click(function() {
@@ -591,20 +591,30 @@ function saveUser() {
     USER["entry.66704122"] = name;
     var email = $("#entry_2135852305").val();
     USER["entry.2135852305"] = email;
-    var other_val = $("#entry_1739474268_other_option_response").val();    
-    $("#user-info .ss-choices").each(function() {
-        var rName = $(this).find("input").attr("name");
-        var checked = $(this).find("input[name='" + rName + "']:checked").val();
-        if(!checked) {
-            // alert("You need to finish all required questions before proceed.");
-        } else {
-            USER[rName] = checked;
-            if(rName === "entry.1739474268" && checked === "__other_option__") {
-                USER["entry.1739474268"] = "__other_option__";
-                USER["entry.1739474268.other_option_response"] = other_val;
-            }
-        }
-    });
+    // save interest
+    var help = $("#user-info .ss-radio").find("input[name='entry.1398427809']:checked").val();
+    if(help !== undefined) {
+        USER["entry.1398427809"] = $("#user-info .ss-radio").find("input[name='entry.1398427809']:checked").val();    
+    } else {
+        USER["entry.1398427809"] = "";
+    } 
+    // save occupation
+    var occu = [];
+     $("#user-info .ss-checkbox .ss-choice-item").each(function() {
+         var value = $(this).find("input[name='entry.1739474268']:checked").val();
+         if(value) { // if this option is checked
+             if (value === "__other_option__") { // if this checked is other option, read other option text
+                 var other_val = $("#entry_1739474268_other_option_response").val();
+                 if(other_val) {
+                     occu.push("\"" + other_val + "\"");
+                 }        
+             } else {
+                occu.push("\"" + value + "\""); 
+             }  
+         }
+     });
+     USER["entry.1739474268"] = occu.join(",");
+     USER["entry.1739474268.other_option_response"] = "";
 }
 
 function savetag() {

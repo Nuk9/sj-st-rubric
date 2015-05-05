@@ -444,33 +444,37 @@
 
               <!-- start question 3: education status -->
               <div class="ss-form-question errorbox-good" role="listitem">
-                <div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
+                <div dir="ltr" class="ss-item ss-item-required"><div class="ss-form-entry">
                     <label class="ss-q-item-label" for="entry_802414739"><div class="ss-q-title">Please tell us about your interest in education issues. Are you a:</div>
                       <div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
-
-                    <ul class="ss-choices" role="radiogroup" aria-label="Please tell us about your interest in education issues. Are you a:">
+                    <ul class="ss-choices ss-checkbox" role="radiogroup" aria-label="Please tell us about your interest in education issues. Are you a:">
                       <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
-                            <input type="radio" name="entry.1739474268" value="Parent" id="group_1739474268_1" role="radio" class="ss-q-radio" aria-label="Parent" required="" aria-required="true"></span>
+                            <input type="checkbox" name="entry.1739474268" value="Parent" id="group_1739474268_1" role="checkbox" class="ss-q-radio" aria-label="Parent" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Parent</span>
                       </label>
                       </li>
-                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Student" id="group_1739474268_2" role="radio" class="ss-q-radio" aria-label="Student" required="" aria-required="true"></span>
+                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
+                        <input type="checkbox" name="entry.1739474268" value="Student" id="group_1739474268_2" role="checkbox" class="ss-q-radio" aria-label="Student" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Student</span>
                       </label>
                       </li>
-                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Educator" id="group_1739474268_3" role="radio" class="ss-q-radio" aria-label="Educator" required="" aria-required="true"></span>
+                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
+                        <input type="checkbox" name="entry.1739474268" value="Educator" id="group_1739474268_3" role="checkbox" class="ss-q-radio" aria-label="Educator" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Educator</span>
                       </label>
                       </li>
-                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Community Leader" id="group_1739474268_4" role="radio" class="ss-q-radio" aria-label="Community Leader" required="" aria-required="true"></span>
+                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
+                        <input type="checkbox" name="entry.1739474268" value="Community Leader" id="group_1739474268_4" role="checkbox" class="ss-q-radio" aria-label="Community Leader" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Community Leader</span>
                       </label>
                       </li>
-                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="Taxpayer" id="group_1739474268_5" role="radio" class="ss-q-radio" aria-label="Taxpayer" required="" aria-required="true"></span>
+                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
+                        <input type="checkbox" name="entry.1739474268" value="Taxpayer" id="group_1739474268_5" role="checkbox" class="ss-q-radio" aria-label="Taxpayer" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Taxpayer</span>
                       </label>
                       </li>
-                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1739474268" value="__other_option__" id="group_1739474268_6" role="radio" class="ss-q-radio ss-q-other-toggle" required="" aria-required="true"></span>
+                      <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
+                        <input type="checkbox" name="entry.1739474268" value="__other_option__" id="group_1739474268_6" role="checkbox" class="ss-q-radio ss-q-other-toggle" required="" aria-required="true"></span>
                           <span class="ss-choice-label">Other:</span></label>
                         <span class="ss-q-other-container goog-inline-block"><input type="text" name="entry.1739474268.other_option_response" value="" class="ss-q-other" id="entry_1739474268_other_option_response" dir="auto" aria-label="Other"></span>
                     </li></ul>
@@ -478,12 +482,12 @@
 
               <!-- start question 4: help analyze more stories -->
               <div class="ss-form-question errorbox-good" role="listitem">
-                <div dir="ltr" class="ss-item  ss-radio">
+                <div dir="ltr" class="ss-item">
                   <div class="ss-form-entry">
                     <label class="ss-q-item-label" for="entry_1610175360"><div class="ss-q-title">Are you interested in helping us analyze more stories in the future?
                       </div>
                       <div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
-                    <ul class="ss-choices" role="radiogroup" aria-label="Are you interested in helping us analyze more stories in the future?  ">
+                    <ul class="ss-choices ss-radio" role="radiogroup" aria-label="Are you interested in helping us analyze more stories in the future?  ">
                       <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block">
                             <input type="radio" name="entry.1398427809" value="Yes" id="group_1398427809_1" role="radio" class="ss-q-radio" aria-label="Yes"></span>
                           <span class="ss-choice-label">Yes</span>
