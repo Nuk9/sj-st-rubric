@@ -643,7 +643,8 @@ function saveUser() {
 
 function savetag() {
     var have = false;
-    $("#tag-content-container span").each(function() {
+    // span: chrome, firefox; font: IE 11
+    $("#tag-content-container").find('span, font').each(function() {
         var color = $(this).css("background-color")
         if(color && color !== "transparent") {
             var hex = rgb2hex(color).toUpperCase();
