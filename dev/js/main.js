@@ -188,6 +188,8 @@ function clearCookie() {
     setCookie("siteRead", "", 10);
 }
 
+var url;
+
 $(document).ready(function() {
     if (!Array.prototype.indexOf)
     {
@@ -480,6 +482,7 @@ $(document).ready(function() {
             gen_article_array(getCookie("siteRead"));
             var index = getRandomNewsFromAvailable();
             current_index = index;
+            loadQues();
             $('#url-box').val(news_links[index]);
             cur = 0;
             loadState(0);    
