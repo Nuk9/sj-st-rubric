@@ -47,7 +47,7 @@
       </div>
       <div class="article-box">
         <div class="at-hl"> </div>
-        <div class="at-ct">  </div>
+        <div class="at-ct at-ct-plain">  </div>
       </div>
       <div class="next-box">
         <button id="goto-question" class="next" type="button"> I've finished reading the story. Bring me to the questions. </button>

@@ -510,9 +510,10 @@ function escapeJSON(jsonString) {
 function submitCoding(cont) {
     var data = "";
     var url = encodeURIComponent($("#url-box").val());
-    var cc = $(".at-ct").text();
+    var cc = $(".at-ct-plain").text();
     cc = cc.replace(/(\r\n|\n|\r)/gm,"");
     cc = encodeURIComponent(cc);
+    
     var ad = encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
     var hl = encodeURIComponent(escapeJSON(headline));
     var j = 0;
@@ -543,7 +544,6 @@ function submitCoding(cont) {
             data = data + "&"
         }
     }
-    data = data+"&draftResponse=[,,\"4996399877183524830\"]"+"&pageHistory=0"+"&fbzx=7337225476764607371"+"&submit=Submit";
     $.ajax({
         type: "POST",
         url: gform_url,
