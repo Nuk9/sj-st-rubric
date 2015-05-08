@@ -40,7 +40,7 @@
         }
         fclose($output);
         // convert response.csv to response-excel-win.csv, sync
-        shell_exec("iconv -c -f UTF8 -t WINDOWS-1252 response.csv > response-excel.csv");
+        shell_exec("iconv -c -f UTF8 -t ANSI_X3.4 response.csv > response-excel.csv");
       }
       
       function get_count() {

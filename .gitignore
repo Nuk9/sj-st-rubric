@@ -7,3 +7,5 @@ round3/*
 */*/*/.DS_Store
 restart-nginx.sh
 dev/response*
+dev/*.csv
+
