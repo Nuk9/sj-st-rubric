@@ -39,8 +39,7 @@
           fputcsv($output, $rows);  
         }
         fclose($output);
-        // convert response.csv to response-excel-win.csv, sync
-        shell_exec("iconv -c -f UTF8 -t ANSI_X3.4 response.csv > response-excel.csv");
+        shell_exec("iconv -c -f UTF8 -t ISO-8859-1 response.csv > response-excel.csv");
       }
       
       function get_count() {
