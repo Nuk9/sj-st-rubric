@@ -679,12 +679,10 @@ function u(tag, color) {
     }
 }
 
-// render color
-function c(tag, color) {
+function highlight(color) {
     var sel = window.getSelection();
     var range;
     sel.rangeCount && sel.getRangeAt && (range = sel.getRangeAt(0));
-    $("#tag-content-container").attr("contentEditable", 1);
     document.designMode = "on";
     if(range) {
         sel.removeAllRanges();
@@ -694,6 +692,24 @@ function c(tag, color) {
         document.execCommand("BackColor", false, color);
     }
     document.designMode = "off";
+}
+
+// render color
+function c(tag, color) {
+    $("#tag-content-container").attr("contentEditable", 1);
+    if(window.getSelection) {
+        try{
+            if(!document.execCommand("BackColor", false, color)) {
+                highlight(color);
+            }
+        }catch(ex) {
+            highlight(color);
+        }
+    } else  if (document.selection && document.selection.createRange) {
+        // IE <= 8 case
+        var range = document.selection.createRange();
+        range.execCommand("BackColor", false, color);
+    }
 }
 
 function rgb2hex(rgb) {
