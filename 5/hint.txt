@@ -1,0 +1,5 @@
+Do you understand clearly from this story what the problem is, and what is causing that problem?
+In addition to the problem, does the story clearly describe a solution to that problem?
+If the story describes a solution, is that description more than superficial? Does it explain clearly how the solution actually works?
+If the story describes a solution, is there solid data or other evidence to show that the solution does (or doesn’t) work? If there’s no solid data, does the story describe first-hand observation or early anecdotal results?
+Does the story connect the problem and/or solution to a bigger insight about how the world works and, perhaps, how it could be made to work better?
