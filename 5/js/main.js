@@ -76,8 +76,12 @@ function loadState(s) {
 }
 
 function renderArticle(headline, content) {
-    $(".at-hl").empty().html("<h2>" + headline +"</h2><hr></hr>");
-    $(".at-ct").empty().html(content.toString());
+    $(".at-hl").empty().each(function() {
+       $(this).html("<h2>" + headline +"</h2><hr></hr>"); 
+    });
+    $(".at-ct").empty().each(function() {
+        $(this).html(content.toString());
+    });
 }
 
 function next() {
@@ -445,7 +449,6 @@ $(document).ready(function() {
             ANSWER = {};
             ANNOTATION_DATA = [];
             $("#finish").attr("disabled", false);
-            $("#tagged-article").html("");
             $("#rv-at").html("");
             $("#rv-ques").html("");
             $('#url-box').val("");
