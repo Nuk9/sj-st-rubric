@@ -105,66 +105,6 @@ var referer;
 var current_index;
 var content_backup;
 
-function gen_article_array(read) {
-    news_read_arr = [];
-    var i = 0;
-    for(i = 0; i < news_links.length; i ++) {
-        news_read_arr.push(0);
-    }
-    
-    var read_arr = read.split(",");
-    for(i = 0; i < read_arr.length; i ++ ) {
-        if(read_arr[i].length != 0) {
-            news_read_arr[parseInt(read_arr[i])] = 1;
-        }
-    }
-    available_news = [];
-    var i = 0;
-    for(i = 0; i < news_links.length; i ++) {
-        if(news_read_arr[i] == 0) {
-            available_news.push(i);
-        }
-    }
-    return available_news;
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
-}
-
-function getRandomNewsFromAvailable() {
-    var low  = 0;
-    var high = available_news.length;
-    var index = Math.floor(Math.random((new Date()).getTime()) * high);
-    return available_news[index];
-}
-
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
-function addReadArticle(index) {
-    var cookie = getCookie("siteRead");
-    cookie = cookie + index + ",";
-    setCookie("siteRead", cookie, 10);
-    return getCookie("siteRead");
-}
-
-function clearCookie() {
-    setCookie("siteRead", "", 10);
-}
-
 var url;
 
 $(document).ready(function() {
@@ -190,7 +130,6 @@ $(document).ready(function() {
             return -1;
         };
     }
-    // clearCookie();
     $("#url-box").keydown(function(event){
         if(event.keyCode == 13) {
             event.preventDefault();
@@ -219,7 +158,8 @@ $(document).ready(function() {
     }
     loadState(cur);
     $("#goto-article").click(function() {
-        url = readability_url + $("#url-box").val();
+        var ubox = $("#url-box").val().trim();
+        url = readability_url + ubox;
         $.getJSON(url, function(json) {
             headline = json.title;
             content = json.content;
