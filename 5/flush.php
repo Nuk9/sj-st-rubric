@@ -31,7 +31,7 @@
         global $csv_win_file;
         
         global $conn;
-        $query = "SELECT uname, q1, q2, q3, q4, q5, url, content, tag, headline FROM response_five";
+        $query = "SELECT tstamp, uname, q1, q2, q3, q4, q5, url, content, tag, headline FROM response_five";
         
         $resp = $conn->query($query);
         $output = fopen($csv_file, 'w');

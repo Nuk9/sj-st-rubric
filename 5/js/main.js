@@ -436,7 +436,7 @@ function submitCoding(cont) {
     cc = encodeURIComponent(cc);
     
     var ad = encodeURIComponent(JSON.stringify(ANNOTATION_DATA));
-    var hl = encodeURIComponent(escapeJSON(headline));
+    var hl = encodeURIComponent(headline);
     var j = 0;
     for(var i = 0; i < field_ids.length; i ++) {
         data = data + field_ids[i] + "=";
