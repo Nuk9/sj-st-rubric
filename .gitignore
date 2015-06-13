@@ -6,6 +6,6 @@ round3/*
 */*/.DS_Store
 */*/*/.DS_Store
 restart-nginx.sh
-dev/response*
-dev/*.csv
+st/response*
+st/*.csv
 

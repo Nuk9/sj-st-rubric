@@ -35,6 +35,7 @@
         
         $resp = $conn->query($query);
         $output = fopen($csv_file, 'w');
+        fwrite($output, "uname,email,occupation,interest,q1,q2,q3,q4,q5,url,content,tag,headline\n");
         while($rows = mysqli_fetch_array($resp, MYSQLI_ASSOC)) {
           fputcsv($output, $rows);  
         }
