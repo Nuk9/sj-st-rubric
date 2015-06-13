@@ -31,7 +31,7 @@
         global $csv_win_file;
         
         global $conn;
-        $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response LIMIT 52,18446744073709551615";
+        $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response WHERE uid > 52";
         
         $resp = $conn->query($query);
         $output = fopen($csv_file, 'w');
