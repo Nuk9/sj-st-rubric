@@ -1,0 +1,70 @@
+<?php
+      // utf8 settings
+      mb_internal_encoding("UTF-8");
+	    mb_http_output( "UTF-8" );
+	    // header('Content-Type: text/html; charset=utf-8');
+	    mb_http_input('UTF-8');
+	    mb_language('uni');
+	    mb_regex_encoding('UTF-8');
+      // Export mysql file to csv
+      $servername = "127.0.0.1";
+	    $username = "miprub";
+	    $dbname = "sj";
+        $password="LearMetrics1";
+      $csv_file = "./response.csv";
+      $csv_win_file = "./response-excel.csv";
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      if($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+	    }
+	    mysqli_set_charset($conn, "utf8");
+      $conn->query("SET NAMES utf8");
+      if(file_exists($csv_file)) {
+          unlink($csv_file);
+      }
+      if(file_exists($csv_win_file)) {
+          unlink($csv_win_file);
+      }
+      
+      function export_to_csv() {
+        global $csv_file;
+        global $csv_win_file;
+        
+        global $conn;
+        $query = "SELECT uname, email, occupation, interest, q1, q2, q3, q4, q5, url, content, tag, headline FROM response WHERE uid > 52";
+        
+        $resp = $conn->query($query);
+        $output = fopen($csv_file, 'w');
+        fwrite($output, "uname,email,occupation,interest,problem,solution,implementation,result,insight,url,content,tag,headline\n");
+        while($rows = mysqli_fetch_array($resp, MYSQLI_ASSOC)) {
+          fputcsv($output, $rows);
+        }
+        fclose($output);
+        shell_exec("iconv -f UTF8 -t WINDOWS-1252//TRANSLIT response.csv -o response-excel.csv");
+      }
+      
+      function get_count() {
+        global $conn;
+        $linenumquery = "SELECT count(*) FROM response";
+        $result = $conn->query($linenumquery);
+        return mysqli_num_rows($result);
+      }
+      
+      export_to_csv();
+      mysqli_close($conn);
+      $data = $_GET['type'];
+      $filename = "";
+      date_default_timezone_set("UTC");
+      $realf = "";
+      if ($data == "utf") {
+          $filename = "response-" . date("c") . ".csv";
+          $realf = $csv_file;
+      } else {
+          $filename = "response-excel-" . date("c") . ".csv";
+          $realf = $csv_win_file;
+      }
+      header('Content-Type: application/octet-stream');
+      header('Content-Disposition: attachment; filename="'.$filename.'";');
+      $str = file_get_contents($realf);
+      readfile($realf);
+    ?>
