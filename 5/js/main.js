@@ -511,7 +511,7 @@ function savetag() {
     var have = false;
     // span: chrome, firefox; font: IE 11
     $("#tag-content-container").find('span, font').each(function() {
-        var color = $(this).css("background-color")
+        var color = $(this).css("background-color");
         if(color && color !== "transparent") {
             var hex = rgb2hex(color).toUpperCase();
             var index = bg_color.indexOf(hex);
@@ -519,14 +519,17 @@ function savetag() {
             if(text != "") {
                 have = true;
                 if(index <= 2 && index >= 0) {
-                    ANNOTATION_DATA.push({
-                        "tag": tag_l[index],
-                        "text": text.replace(/(\r\n|\n|\r)/gm,"").replace(/\"/g, "\\\"")
+                  var test = text.replace(/(\r\n|\n|\r)/gm,"");
+                  test = test
+                      .replace(/\"/g, "\\\"")
                       .replace(/\[/g, "\\[")
                       .replace(/\]/g, "\\]")
                       .replace(/\{/g, "\\{")
                       .replace(/\}/g, "\\}")
-                      .replace(/\:/g, "\\:")
+                      .replace(/\:/g, "\\:");
+                    ANNOTATION_DATA.push({
+                        "tag": tag_l[index],
+                        "text": test
                     });
                 }
             }
