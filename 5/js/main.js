@@ -411,23 +411,6 @@ function loadQuesAndSetReadOnly() {
     });
 }
 
-
-function escapeJSON(jsonString) {
-    return jsonString.replace(/\\n/g, "\\n")
-        .replace(/\\'/g, "\\'")
-        .replace(/\\"/g, '\\"')
-        .replace(/\\&/g, "\\&")
-        .replace(/\\r/g, "\\r")
-        .replace(/\\t/g, "\\t")
-        .replace(/\\b/g, "\\b")
-        .replace(/\\f/g, "\\f")
-        .replace(/“/g, "\\“")
-        .replace(/”/g, "\\”")
-        .replace(/’/g, "\\’")
-    ;
-}
-
-
 function submitCoding(cont) {
     var data = "";
     var url = encodeURIComponent($("#url-box").val());
@@ -538,7 +521,7 @@ function savetag() {
                 if(index <= 2 && index >= 0) {
                     ANNOTATION_DATA.push({
                         "tag": tag_l[index],
-                        "text": escapeJSON(text.replace(/(\r\n|\n|\r)/gm,""))
+                        "text": text.replace(/(\r\n|\n|\r)/gm,"")
                     });
                 }
             }
