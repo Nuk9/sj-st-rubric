@@ -527,6 +527,7 @@ function savetag() {
                       .replace(/\{/g, "\\{")
                       .replace(/\}/g, "\\}")
                       .replace(/\:/g, "\\:");
+                    alert(test);
                     ANNOTATION_DATA.push({
                         "tag": tag_l[index],
                         "text": test
