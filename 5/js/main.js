@@ -521,7 +521,12 @@ function savetag() {
                 if(index <= 2 && index >= 0) {
                     ANNOTATION_DATA.push({
                         "tag": tag_l[index],
-                        "text": text.replace(/(\r\n|\n|\r)/gm,"")
+                        "text": text.replace(/(\r\n|\n|\r)/gm,"").replace(/\"/g, "\\\"")
+                      .replace(/\[/g, "\\[")
+                      .replace(/\]/g, "\\]")
+                      .replace(/\{/g, "\\{")
+                      .replace(/\}/g, "\\}")
+                      .replace(/\:/g, "\\:")
                     });
                 }
             }
