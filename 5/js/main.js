@@ -521,12 +521,7 @@ function savetag() {
                 if(index <= 2 && index >= 0) {
                   var test = text.replace(/(\r\n|\n|\r)/gm,"");
                   test = test
-                      .replace(/\"/g, "\\\"")
-                      .replace(/\[/g, "\\[")
-                      .replace(/\]/g, "\\]")
-                      .replace(/\{/g, "\\{")
-                      .replace(/\}/g, "\\}")
-                      .replace(/\:/g, "\\:");
+                      .replace(/\"/g, "\\\"");
                     ANNOTATION_DATA.push({
                         "tag": tag_l[index],
                         "text": test
