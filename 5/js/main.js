@@ -444,6 +444,8 @@ function submitCoding(cont) {
     }
     // final: add local timestamp
     var date = parseInt(new Date().getTime() / 1000);
+    var offset = new Date().getTimezoneOffset() * 60;
+    date = date - offset;
     data = data + "localtime=" + date;
     $.ajax({
         type: "POST",
