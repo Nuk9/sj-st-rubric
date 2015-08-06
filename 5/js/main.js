@@ -440,10 +440,11 @@ function submitCoding(cont) {
             data = data + ANSWER[names[j]];
             j = j + 1;
         }
-        if(i != field_ids.length - 1) {
-            data = data + "&";
-        }
+      data = data + "&";
     }
+    // final: add local timestamp
+    var date = parseInt(new Date().getTime() / 1000);
+    data = data + "localtime=" + date;
     $.ajax({
         type: "POST",
         url: gform_url,
@@ -520,8 +521,8 @@ function savetag() {
                 have = true;
                 if(index <= 2 && index >= 0) {
                   var test = text.replace(/(\r\n|\n|\r)/gm,"");
-                  test = test
-                      .replace(/\"/g, "\\\"");
+                  // test = test
+                  //     .replace(/\"/g, "\\\"");
                     ANNOTATION_DATA.push({
                         "tag": tag_l[index],
                         "text": test

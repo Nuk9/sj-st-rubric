@@ -49,24 +49,26 @@
 	$content = $_POST['entry_775723807'];
 	$anno = $_POST['entry_903406015'];
 	$headline = $_POST['entry_1494902380'];
+    $localtimeraw = $_POST['localtime'];
+    $localtime = date('Y-m-d H:i:s', $localtimeraw);
 	// generate a uid for this response
 	$uid = uniqid();
-	$toinsert =  "'" . $strdate . "'," . "'" . $name . "', '" . $q1 . "', '"
-				. $q2 . "', '" . $q3 . "', '" . $q4 . "', '" . $q5 . "',  '" . $url . "', '"
-				. $content . "', '" . $anno . "', '" . $headline . "'"; 
 	// insert into mysql table sj.response
 	$servername = "127.0.0.1";
 	$username = "miprub";
 	$password = "LearMetrics1";
 	$dbname = "sj";
-	
 	$conn = new mysqli($servername, $username, $password, $dbname);
+    $anno = mysqli_real_escape_string($conn, $anno);
+	$toinsert =  "'" . $strdate . "'," . "'" . $name . "', '" . $q1 . "', '"
+				. $q2 . "', '" . $q3 . "', '" . $q4 . "', '" . $q5 . "',  '" . $url . "', '"
+				. $content . "', '" . $anno . "', '" . $headline . "', '" . $localtime . "'"; 
 
 	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	mysqli_set_charset($conn, "utf8");
-	$sql = "INSERT INTO response_five (tstamp, uname, q1, q2, q3, q4, q5, url, content, tag, headline) VALUES " 
+	$sql = "INSERT INTO response_five (tstamp, uname, q1, q2, q3, q4, q5, url, content, tag, headline, localtstamp) VALUES " 
 	. " (". $toinsert . ")";
 	#$sql = $conn->real_escape_string($sql);
 	// echo $sql;
